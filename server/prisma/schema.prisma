@@ -8,11 +8,11 @@ datasource db {
 }
 
 model User {
-  id        String   @id @default(uuid())
-  name      String
-  last_name String
-  token     String
-  Recipe    Recipe[]
+  id       String   @id @default(uuid())
+  name     String
+  lastName String
+  token    String
+  Recipe   Recipe[]
 }
 
 model Recipe {
@@ -22,7 +22,7 @@ model Recipe {
   createdAt    DateTime @default(now())
   updatedAt    DateTime @updatedAt
   owner        User     @relation(fields: [authorId], references: [id])
-  authorId     String
+  authorId     String   @default("bcfe5af2-637d-4a95-a80f-1cacaf79bd46")
   original     Boolean  @default(true)
   image        String?
   prepTime     String
