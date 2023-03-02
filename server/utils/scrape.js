@@ -61,8 +61,6 @@ exports.scrapeUrl = async (url) => {
 
     return result;
   });
-  console.log(data);
-  console.log(data.instructions);
 
   return data;
 };
