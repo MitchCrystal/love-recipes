@@ -4,7 +4,33 @@
 
 [data-theme='light'] .btn {
   text-transform: none;
+  font-weight: normal;
 }
-[data-theme='light'] .input:focus {
+[data-theme='light'] .input:focus,
+[data-theme='light'] .textarea:focus {
   outline: none;
+}
+
+textarea {
+  max-height: 150px;
+}
+
+.section {
+  padding: 0 15px;
+}
+
+.CreateRecipe ._form {
+  max-width: 400px;
+}
+._form__inner {
+  flex-direction: row;
+  flex-wrap: wrap;
+  margin: -0.3rem -0.5rem;
+}
+._form__field {
+  width: 100%;
+  padding: 0.3rem 0.5rem;
+}
+._form__field.w-6\/12 {
+  width: 50%;
 }
