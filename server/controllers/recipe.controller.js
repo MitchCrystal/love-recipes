@@ -1,15 +1,23 @@
 'use strict';
 
-const { newRecipe } = require('../models/recipe.model');
+const { newRecipe, findRecipe } = require('../models/recipe.model');
 const scraper = require('../utils/scrape');
 
 exports.scrapeUrl = async (req, res) => {
   try {
     const { url } = req.body;
-    const data = await scraper.scrapeUrl(url);
+
+    const dbRecipe = await findRecipe(url); // check DB for recipe
+    let result;
+    if (dbRecipe) {
+      dbRecipe.url = '';
+      result = dbRecipe;
+    } else {
+      result = await scraper.scrapeUrl(url);
+    }
 
     res.status(200);
-    res.send(data);
+    res.send(result);
   } catch (error) {
     console.log(`scrapeUrl error:\n${error}`);
     res.status(400);
