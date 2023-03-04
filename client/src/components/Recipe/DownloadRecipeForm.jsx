@@ -1,5 +1,5 @@
 import { useState } from 'react';
-import BackendService from '../services/BackendService';
+import BackendService from '../../services/BackendService';
 
 const domain = 'https://www.simplyrecipes.com/';
 
@@ -45,7 +45,7 @@ function DownloadRecipeForm({ setRecipe }) {
           type="submit"
           className="btn"
         >
-          Get me the recipe!
+          Import Recipe
         </button>
       </form>
     </div>

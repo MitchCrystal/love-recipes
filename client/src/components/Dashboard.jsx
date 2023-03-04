@@ -1,13 +1,7 @@
-import DownloadRecipe from './Recipe/DownloadRecipe';
+import ImportRecipe from './pages/Import';
 
-function Dashboard() {
-  return (
-    <div className="Dashboard section">
-      <div className="container mx-auto grid h-screen place-items-center">
-        <DownloadRecipe />
-      </div>
-    </div>
-  );
+function Dashboard({ children }) {
+  return <div className="Dashboard">{children}</div>;
 }
 
 export default Dashboard;

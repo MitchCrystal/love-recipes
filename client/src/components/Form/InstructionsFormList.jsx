@@ -79,13 +79,13 @@ function InstructionsFormList({ field, list, setInputs }) {
         </span>
       </label>
 
-      <ul className="_list _list--numbers">
+      <ol className="_list _list--numbers">
         {list.length
           ? list.map((val, i) => {
               return renderInstruction(val, i);
             })
           : renderInstruction('', 0)}
-      </ul>
+      </ol>
     </div>
   );
 }

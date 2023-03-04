@@ -2,6 +2,10 @@
 @tailwind components;
 @tailwind utilities;
 
+[data-theme='light'] {
+  --rounded-box: 0.5rem;
+}
+
 [data-theme='light'] .btn {
   text-transform: none;
   font-weight: normal;
@@ -16,7 +20,12 @@ textarea {
 }
 
 .section {
+  margin: 60px;
   padding: 0 15px;
+}
+.section--pad {
+  margin: 0;
+  padding: 60px 15px;
 }
 
 .CreateRecipe ._form {

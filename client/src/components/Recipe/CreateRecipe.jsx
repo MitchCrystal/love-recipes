@@ -2,9 +2,9 @@ import { useState, useEffect } from 'react';
 
 import BackendService from '../../services/BackendService';
 
-import FormInput from '../Form/FormInput';
-import IngredientsFormList from '../Form/IngredientsFormList';
-import InstructionsFormList from '../Form/InstructionsFormList';
+import FormInput from '../form/FormInput';
+import IngredientsFormList from '../form/IngredientsFormList';
+import InstructionsFormList from '../form/InstructionsFormList';
 
 function recipeHasChanged(currRecipe) {
   return JSON.stringify(originalRecipe) !== JSON.stringify(currRecipe);
