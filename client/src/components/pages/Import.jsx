@@ -13,11 +13,9 @@ function Import() {
           <>
             <section className="section">
               <div className="container mx-auto">
-                <div className="flex flex-col justify-center text-center">
-                  <div className="_title">
+                <div className="flex flex-col flex-wrap content-center text-center">
+                  <div className="prose lg:prose-xl w-full">
                     <h1>Import a recipe</h1>
-                  </div>
-                  <div className="_content _content--big">
                     <p>Import a recipe from your favourite recipe website</p>
                   </div>
                 </div>
