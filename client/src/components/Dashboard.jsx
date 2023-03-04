@@ -1,6 +1,11 @@
-import ImportRecipe from './pages/Import';
+import React from 'react';
+import PropTypes from 'prop-types';
 
-function Dashboard({ children }) {
+Dashboard.propTypes = {
+  children: PropTypes.elementType.isRequired,
+};
+
+function Dashboard ({ children }) {
   return <div className="Dashboard">{children}</div>;
 }
 

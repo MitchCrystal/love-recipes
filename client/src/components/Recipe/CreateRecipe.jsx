@@ -1,3 +1,5 @@
+import React from 'react';
+import PropTypes from 'prop-types';
 import { useState, useEffect } from 'react';
 
 import BackendService from '../../services/BackendService';
@@ -6,7 +8,7 @@ import FormInput from '../form/FormInput';
 import IngredientsFormList from '../form/IngredientsFormList';
 import InstructionsFormList from '../form/InstructionsFormList';
 
-function recipeHasChanged(currRecipe) {
+function recipeHasChanged (currRecipe) {
   return JSON.stringify(originalRecipe) !== JSON.stringify(currRecipe);
 }
 
@@ -61,7 +63,11 @@ const inputControl = {
 
 let originalRecipe = null;
 
-function CreateRecipe({ fetchedRecipe }) {
+CreateRecipe.propTypes = {
+  fetchedRecipe: PropTypes.object,
+};
+
+function CreateRecipe ({ fetchedRecipe }) {
   const [inputs, setInputs] = useState(inputControl);
 
   useEffect(() => {

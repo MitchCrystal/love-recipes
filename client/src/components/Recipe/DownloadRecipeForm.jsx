@@ -1,4 +1,7 @@
+import React from 'react';
+import PropTypes from 'prop-types';
 import { useState } from 'react';
+
 import BackendService from '../../services/BackendService';
 
 const domain = 'https://www.simplyrecipes.com/';
@@ -7,7 +10,11 @@ const inputControl = {
   url: 'cheeseburger-casserole-recipe-6835713',
 };
 
-function DownloadRecipeForm({ setRecipe }) {
+DownloadRecipeForm.propTypes = {
+  setRecipe: PropTypes.func.isRequired,
+};
+
+function DownloadRecipeForm ({ setRecipe }) {
   const [inputs, setInputs] = useState(inputControl);
 
   const handleSubmit = (e) => {

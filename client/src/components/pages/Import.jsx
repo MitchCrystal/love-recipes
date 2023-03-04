@@ -1,9 +1,10 @@
+import React from 'react';
 import { useState } from 'react';
 
 import Dashboard from '../Dashboard';
 import { DownloadRecipeForm, CreateRecipe } from '../recipe';
 
-function Import() {
+function Import () {
   const [recipe, setRecipe] = useState(null);
 
   return (

@@ -1,4 +1,13 @@
-function IngredientsFormList({ field, list, setInputs }) {
+import React from 'react';
+import PropTypes from 'prop-types';
+
+IngredientsFormList.propTypes = {
+  field: PropTypes.object.isRequired,
+  list: PropTypes.array,
+  setInputs: PropTypes.func.isRequired,
+};
+
+function IngredientsFormList ({ field, list, setInputs }) {
   // Update state ingredients array if one ingredient is changed
   const handleChange = (e, index) => {
     setInputs((prev) => {
@@ -39,8 +48,8 @@ function IngredientsFormList({ field, list, setInputs }) {
       <ul className="_list">
         {list.length
           ? list.map((ingredient, i) => {
-              return renderIngredient(ingredient, i);
-            })
+            return renderIngredient(ingredient, i);
+          })
           : renderIngredient('', 0)}
       </ul>
     </div>

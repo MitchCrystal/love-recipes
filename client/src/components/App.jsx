@@ -1,9 +1,10 @@
+import React from 'react';
 import { Route, Routes } from 'react-router-dom';
 
 import { Create, Discover, Import, Recipes } from './pages';
 import Navbar from './Navbar';
 
-function App() {
+function App () {
   return (
     <div className="App">
       <Navbar />

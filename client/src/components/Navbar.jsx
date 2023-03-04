@@ -1,6 +1,7 @@
+import React from 'react';
 import { Link } from 'react-router-dom';
 
-function Navbar() {
+function Navbar () {
   return (
     <div className="Navbar">
       <div className="navbar mb-2 shadow-lg bg-neutral text-neutral-content">

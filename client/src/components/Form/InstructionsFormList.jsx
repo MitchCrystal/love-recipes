@@ -1,6 +1,15 @@
+import React from 'react';
+import PropTypes from 'prop-types';
+
 const newLineChar = '\n';
 
-function InstructionsFormList({ field, list, setInputs }) {
+InstructionsFormList.propTypes = {
+  field: PropTypes.object.isRequired,
+  list: PropTypes.array,
+  setInputs: PropTypes.func.isRequired,
+};
+
+function InstructionsFormList ({ field, list, setInputs }) {
   // Update state instructions array if one instruction is changed
   const handleChange = (e, index, fieldType) => {
     setInputs((prev) => {
@@ -82,8 +91,8 @@ function InstructionsFormList({ field, list, setInputs }) {
       <ol className="_list _list--numbers">
         {list.length
           ? list.map((val, i) => {
-              return renderInstruction(val, i);
-            })
+            return renderInstruction(val, i);
+          })
           : renderInstruction('', 0)}
       </ol>
     </div>

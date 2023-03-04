@@ -1,4 +1,13 @@
-function FormInput({ field, value, setInputs }) {
+import React from 'react';
+import PropTypes from 'prop-types';
+
+FormInput.propTypes = {
+  field: PropTypes.object.isRequired,
+  value: PropTypes.string,
+  setInputs: PropTypes.func.isRequired,
+};
+
+function FormInput ({ field, value, setInputs }) {
   return (
     <div
       className={`_form__field _form__field--${field.id}${

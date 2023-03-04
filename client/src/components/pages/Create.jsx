@@ -1,7 +1,9 @@
+import React from 'react';
+
 import Dashboard from '../Dashboard';
 import CreateRecipe from '../recipe/CreateRecipe';
 
-function Create() {
+function Create () {
   return (
     <div className="page-create">
       <Dashboard>
