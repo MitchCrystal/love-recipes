@@ -2,23 +2,46 @@
 @tailwind components;
 @tailwind utilities;
 
+/*--- Theme overrides ---*/
 [data-theme='light'] {
   --rounded-box: 0.5rem;
+  --base-200: #f7f7f7;
 }
 
 [data-theme='light'] .btn {
   text-transform: none;
   font-weight: normal;
+  font-size: 1rem;
+  color: #ffffff;
+  text-decoration: none;
+}
+
+[data-theme='light'] .label-text {
+  font-size: 1rem;
+  line-height: 1.5rem;
 }
 [data-theme='light'] .input:focus,
 [data-theme='light'] .textarea:focus {
   outline: none;
 }
 
+[data-theme='light'] .alert {
+  display: inline-block;
+  width: auto;
+  padding: 1rem 7rem;
+  text-align: center;
+}
+.alert.alert-success {
+  background-color: #e9f4f2;
+  color: #009485;
+}
+
+/*--- Defaults ---*/
 textarea {
   max-height: 150px;
 }
 
+/*--- Global ---*/
 .section {
   margin: 60px;
   padding: 0 15px;
@@ -28,9 +51,60 @@ textarea {
   padding: 60px 15px;
 }
 
-.CreateRecipe ._form {
-  max-width: 400px;
+._list {
+  counter-reset: listCount;
 }
+._list li {
+  display: flex;
+}
+._list li:not(:last-child) {
+  margin-bottom: 1rem;
+}
+._list:not(._list--numbers) li:before {
+  content: '';
+  display: block;
+  width: 8px;
+  height: 8px;
+  border-radius: 50%;
+  background-color: hsla(var(--bc) / 0.8);
+  margin-top: 1.3rem;
+  margin-right: 0.8rem;
+}
+._list--numbers > li:before {
+  counter-increment: listCount;
+  content: counter(listCount);
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  flex: 0 0 50px;
+  height: 50px;
+  margin-right: 20px;
+  color: hsla(var(--bc) / 0.8);
+  font-size: 1.8rem;
+  border: 1px solid hsla(var(--bc) / 0.8);
+  border-radius: 50%;
+}
+
+._list--bg-alt > li {
+  padding: 1rem;
+}
+._list--bg-alt > li:nth-child(odd) {
+  background-color: var(--base-200);
+}
+._list--numbers._list--bg-alt > li:nth-child(odd):before {
+  background-color: #ffffff;
+}
+
+/*--- Custom ---*/
+.Navbar__logo svg {
+  width: 40px;
+  height: 40px;
+  margin-right: 5px;
+}
+.Navbar__logo__text {
+  line-height: 1;
+}
+
 ._form__inner {
   flex-direction: row;
   flex-wrap: wrap;
@@ -42,4 +116,31 @@ textarea {
 }
 ._form__field.w-6\/12 {
   width: 50%;
+}
+
+._form__field--instructions > *:not(:last-child) {
+  margin-bottom: 0.8rem;
+}
+
+.collapse-transparent .collapse-title {
+  padding-left: 0.25rem;
+  padding-right: 2rem;
+  font-size: 1.3rem;
+}
+.collapse-transparent.collapse-arrow .collapse-title:after {
+  right: 1rem;
+}
+
+/*--- Components ---*/
+
+/* CreateRecipe */
+.CreateRecipe ._form {
+  max-width: 550px;
+  margin: 0 auto;
+}
+
+/* DownloadRecipeForm */
+.DownloadRecipeForm {
+  width: 600px;
+  text-align: center;
 }
