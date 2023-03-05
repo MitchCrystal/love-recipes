@@ -10,4 +10,7 @@ router.post('/scrape', recipeController.scrapeUrl);
 // Add recipe
 router.post('/recipe', recipeController.addRecipe);
 
+// Get all recipes
+router.get('/recipes', recipeController.allRecipes);
+
 module.exports = router;

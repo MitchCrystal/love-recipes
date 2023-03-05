@@ -1,8 +1,10 @@
 const prisma = require('./db-connect');
 
 exports.newRecipe = async (recipe) => {
-  console.log('--- HERE ---');
+  recipe.url =
+    '/recipe/' + recipe.title.toLowerCase().replaceAll(' ', '-').trim();
   console.log(recipe);
+
   const response = await prisma.recipe.create({
     data: recipe,
   });
@@ -17,5 +19,10 @@ exports.findRecipe = async (url) => {
     },
   });
 
+  return response;
+};
+
+exports.getRecipes = async () => {
+  const response = await prisma.recipe.findMany();
   return response;
 };

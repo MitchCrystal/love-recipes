@@ -1,6 +1,6 @@
 'use strict';
 
-const { newRecipe, findRecipe } = require('../models/recipe.model');
+const { newRecipe, findRecipe, getRecipes } = require('../models/recipe.model');
 const scraper = require('../utils/scrape');
 
 exports.scrapeUrl = async (req, res) => {
@@ -34,5 +34,17 @@ exports.addRecipe = async (req, res) => {
   } catch (error) {
     console.log(`addRecipe error:\n${error}`);
     res.status(400);
+  }
+};
+
+exports.allRecipes = async (req, res) => {
+  try {
+    const response = await getRecipes();
+
+    res.status(200);
+    res.send(response);
+  } catch (error) {
+    console.log(`allRecipes error:\n${error}`);
+    res.status(500);
   }
 };

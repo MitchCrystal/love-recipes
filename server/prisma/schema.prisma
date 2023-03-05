@@ -22,7 +22,7 @@ model Recipe {
   createdAt    DateTime @default(now())
   updatedAt    DateTime @updatedAt
   owner        User     @relation(fields: [authorId], references: [id])
-  authorId     String   @default("bcfe5af2-637d-4a95-a80f-1cacaf79bd46")
+  authorId     String   @default("57de2e1c-8007-48ea-9396-08db74a4465c")
   original     Boolean  @default(true)
   image        String?
   prepTime     String
@@ -31,5 +31,6 @@ model Recipe {
   servings     String
   instructions Json[]
   ingredients  String[]
-  url          String?
+  extUrl       String?
+  url          String
 }
