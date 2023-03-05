@@ -18,7 +18,8 @@
     "space-before-blocks": "error",
     "space-before-function-paren": "error",
     "no-undef": "off",
-    "no-unused-vars": "off"
+    "no-unused-vars": "off",
+    "react/prop-types": 0
   },
   "overrides": [
     {
