@@ -6,7 +6,7 @@ function Carousel ({ children }) {
 
   return (
     <div className="Carousel">
-      <div className="carousel carousel-center max-w-md p-4 space-x-4 bg-neutral rounded-box">
+      <div className="carousel carousel-center p-4 space-x-4">
         {children &&
           children.map((child, i) => (
             <div
