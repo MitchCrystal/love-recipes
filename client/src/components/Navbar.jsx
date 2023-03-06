@@ -4,7 +4,7 @@ import { Link, NavLink } from 'react-router-dom';
 function Navbar () {
   return (
     <div className="Navbar">
-      <div className="navbar mb-2 shadow-lg bg-neutral text-neutral-content">
+      <div className="navbar mb-2 shadow-lg bg-primary">
         <div className="px-2 mx-2 navbar-start">
           <div className="flex items-stretch">
             <Link
@@ -75,13 +75,7 @@ function Navbar () {
               className="p-2 shadow menu dropdown-content bg-base-100 rounded-box w-52"
             >
               <li>
-                <a>Item 1</a>
-              </li>
-              <li>
-                <a>Item 2</a>
-              </li>
-              <li>
-                <a>Item 3</a>
+                <a>Sign out</a>
               </li>
             </ul>
           </div>

@@ -1,7 +1,7 @@
 import React from 'react';
 import { Route, Routes } from 'react-router-dom';
 
-import { Create, Home, Import, Recipes, NotFound } from './pages';
+import { Create, Home, Import, Recipes, Recipe, NotFound } from './pages';
 import Navbar from './components/Navbar';
 
 function App () {
@@ -27,7 +27,8 @@ function App () {
         />
         <Route
           path="/recipes/:url"
-          element={<NotFound />}
+          element={<Recipe />}
+          errorElement={<NotFound />}
         />
         <Route
           path="*"

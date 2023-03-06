@@ -1,5 +1,6 @@
 import React from 'react';
 import { useState, useEffect } from 'react';
+import { useNavigate } from 'react-router-dom';
 
 import BackendService from '../services/BackendService';
 
@@ -7,6 +8,7 @@ import FormInput from '../form/FormInput';
 import IngredientsFormList from '../form/IngredientsFormList';
 import InstructionsFormList from '../form/InstructionsFormList';
 import Success from '../utils/Success';
+import Error from '../utils/Error';
 
 const formFields = {
   title: {
@@ -67,13 +69,14 @@ const fieldOrder = [
 ];
 
 function CreateRecipe ({ fetchedRecipe, textContent }) {
+  const navigate = useNavigate();
   const [inputs, setInputs] = useState(inputControl);
+  const [error, setError] = useState(false);
 
   useEffect(() => {
     if (fetchedRecipe) {
       setInputs(fetchedRecipe);
     }
-    console.log(fieldOrder);
   }, [fetchedRecipe]);
 
   const handleSubmit = (e) => {
@@ -81,16 +84,15 @@ function CreateRecipe ({ fetchedRecipe, textContent }) {
 
     const newRecipe = { ...inputs };
 
-    // if (recipeHasChanged(newRecipe)) {
-    // delete newRecipe.id; // remove current id so that it is assigned a new id
-    // newRecipe.original = false;
-
     BackendService.addRecipe(newRecipe).then((response) => {
-      // Error handling-------
       // Save to database - or if already exists and user hasn't made changes, pretend to save
-      console.log(response);
+      if (response.data) {
+        const { data, success } = response;
+        navigate(data.url, { state: { success } });
+      } else {
+        setError(response.error);
+      }
     });
-    // }
 
     // add success message
   };
@@ -145,13 +147,20 @@ function CreateRecipe ({ fetchedRecipe, textContent }) {
                     setInputs={setInputs}
                   />
                 </div>
-                <div className="flex justify-center">
+                <div className="flex flex-col items-center">
                   <button
                     type="submit"
                     className="btn btn-wide mt-6"
                   >
                     Save Recipe
                   </button>
+
+                  {error && (
+                    <Error
+                      className="mt-8"
+                      text={error}
+                    />
+                  )}
                 </div>
               </form>
             </div>

@@ -22,6 +22,7 @@
     "@vitejs/plugin-react": "^3.1.0",
     "autoprefixer": "^10.4.13",
     "daisyui": "^2.51.3",
+    "dotenv": "^16.0.3",
     "eslint": "^8.35.0",
     "eslint-plugin-react": "^7.32.2",
     "postcss": "^8.4.21",

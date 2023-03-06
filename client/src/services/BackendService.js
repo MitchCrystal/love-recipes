@@ -1,4 +1,4 @@
-const domain = 'http://localhost:3001';
+const domain = import.meta.env.VITE_DOMAIN;
 
 const getUrlData = async (url) => {
   try {
@@ -20,7 +20,7 @@ const getUrlData = async (url) => {
 
 const addRecipe = async (newRecipe) => {
   try {
-    const response = await fetch(`${domain}/recipe`, {
+    const response = await fetch(`${domain}/recipe/add`, {
       method: 'POST',
       mode: 'cors',
       headers: {
@@ -39,7 +39,7 @@ const addRecipe = async (newRecipe) => {
 
 const fetchRecipes = async () => {
   try {
-    const response = await fetch(`${domain}/recipes`, {
+    const response = await fetch(`${domain}/recipes/get`, {
       method: 'GET',
     });
     const result = await response.json();
@@ -49,8 +49,27 @@ const fetchRecipes = async () => {
   }
 };
 
+const fetchRecipe = async (url) => {
+  try {
+    const response = await fetch(`${domain}/recipe/get`, {
+      method: 'POST',
+      mode: 'cors',
+      headers: {
+        'Content-Type': 'application/json',
+      },
+      body: JSON.stringify({ url }),
+    });
+    const result = await response.json();
+    return result;
+  } catch (error) {
+    console.log('fetchRecipes error:\n', error);
+    return { data: null, error: 'Not found', errorCode: 404 };
+  }
+};
+
 export default {
   getUrlData,
   addRecipe,
   fetchRecipes,
+  fetchRecipe,
 };

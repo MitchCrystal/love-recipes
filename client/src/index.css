@@ -4,8 +4,11 @@
 
 /*--- Theme overrides ---*/
 [data-theme='light'] {
+  --p: 98deg 32% 45%;
+  --s: 99deg 25% 65%;
+  --a: 99deg 24% 86%;
   --rounded-box: 0.5rem;
-  --base-200: #f7f7f7;
+  --base-200: #fff4d6;
 }
 
 [data-theme='light'] .btn {
@@ -20,6 +23,9 @@
   font-size: 1rem;
   line-height: 1.5rem;
 }
+[data-theme='light'] .input {
+  box-shadow: inset 1px 1px 4px 4px rgb(0 0 0 / 1%);
+}
 [data-theme='light'] .input:focus,
 [data-theme='light'] .textarea:focus {
   outline: none;
@@ -28,12 +34,18 @@
 [data-theme='light'] .alert {
   display: inline-block;
   width: auto;
-  padding: 1rem 7rem;
+  padding: 1rem 3.5rem;
   text-align: center;
 }
 .alert.alert-success {
   background-color: #e9f4f2;
   color: #009485;
+  border: 1px solid #009485;
+}
+.alert.alert-error {
+  background-color: #fff5f5;
+  color: #c53030;
+  border: 1px solid #c53030;
 }
 
 /*--- Defaults ---*/
@@ -104,7 +116,7 @@ textarea {
   padding: 1rem;
 }
 ._list--bg-alt > li:nth-child(odd) {
-  background-color: var(--base-200);
+  background-color: hsl(var(--a));
 }
 ._list--numbers._list--bg-alt > li:nth-child(odd):before {
   background-color: #ffffff;
@@ -114,6 +126,7 @@ textarea {
 .Navbar__logo {
   display: flex;
   align-items: center;
+  color: #ffffff;
 }
 .Navbar__logo svg {
   width: 40px;

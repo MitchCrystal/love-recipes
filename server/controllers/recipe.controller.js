@@ -49,6 +49,11 @@ exports.scrapeUrl = async (req, res) => {
 Recipe isn't fetched if already exists in the DB, even if it has been altered
 */
 exports.saveRecipe = async (req, res) => {
+  let result = {
+    data: null,
+    error: 'Unable to save recipe. Please refresh and try again',
+  };
+
   try {
     const newRecipe = req.body;
 
@@ -56,16 +61,24 @@ exports.saveRecipe = async (req, res) => {
     if (newRecipe.id) {
       // if recipe has id, then update
       response = await updateRecipe(newRecipe);
+      result = {
+        data: response,
+        success: 'Successfully updated recipe',
+      };
     } else {
-      response = await prisma.recipe.findFirst({
+      const dbRecipe = await prisma.recipe.findFirst({
         where: {
           extUrl: newRecipe.extUrl,
         },
       });
 
-      if (response) {
+      if (dbRecipe) {
         // if recipe extUrl exists in database, then update
         response = await updateRecipe(newRecipe);
+        result = {
+          data: response,
+          success: 'Successfully updated recipe',
+        };
       } else {
         // else create new recipe
         newRecipe.url =
@@ -73,13 +86,18 @@ exports.saveRecipe = async (req, res) => {
         response = await prisma.recipe.create({
           data: newRecipe,
         });
+        result = {
+          data: response,
+          success: 'Successfully created new recipe',
+        };
       }
     }
 
     res.status(201);
-    res.send(response);
+    res.send(result);
   } catch (error) {
     console.log(`saveRecipe error:\n${error}`);
+    res.send(result);
     res.status(400);
   }
 };
