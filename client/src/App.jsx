@@ -1,7 +1,7 @@
 import React from 'react';
 import { Route, Routes } from 'react-router-dom';
 
-import { Create, Discover, Import, Recipes, NotFound } from './pages';
+import { Create, Home, Import, Recipes, NotFound } from './pages';
 import Navbar from './components/Navbar';
 
 function App () {
@@ -11,7 +11,7 @@ function App () {
       <Routes>
         <Route
           path="/"
-          element={<Discover />}
+          element={<Home />}
         />
         <Route
           path="/my-recipes"

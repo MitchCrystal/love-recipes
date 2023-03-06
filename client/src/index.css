@@ -51,6 +51,21 @@ textarea {
   padding: 60px 15px;
 }
 
+._imgTagBg {
+  position: relative;
+  overflow: hidden;
+}
+._imgTagBg > img:first-child {
+  position: absolute;
+  min-width: 100%;
+  min-height: 100%;
+  object-fit: cover;
+  top: 50%;
+  left: 50%;
+  transform: translate(-50%, -50%);
+  transition: 0.3s all;
+}
+
 ._list {
   counter-reset: listCount;
 }
@@ -131,6 +146,16 @@ textarea {
   right: 1rem;
 }
 
+.icon-text {
+  display: flex;
+  align-items: center;
+}
+.icon-text svg {
+  width: 24px;
+  height: 24px;
+  margin-right: 0.5rem;
+}
+
 /*--- Components ---*/
 
 /* CreateRecipe */
@@ -143,4 +168,12 @@ textarea {
 .DownloadRecipeForm {
   width: 600px;
   text-align: center;
+}
+
+/* Card */
+.card-image {
+  padding-bottom: 24rem;
+}
+.card--hover:hover ._imgTagBg > img:first-child {
+  transform: translate(-50%, -50%) scale(1.03);
 }

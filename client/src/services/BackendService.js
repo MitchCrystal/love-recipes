@@ -37,7 +37,20 @@ const addRecipe = async (newRecipe) => {
   }
 };
 
+const fetchRecipes = async () => {
+  try {
+    const response = await fetch(`${domain}/recipes`, {
+      method: 'GET',
+    });
+    const result = await response.json();
+    return result;
+  } catch (error) {
+    console.log('fetchRecipes error:\n', error);
+  }
+};
+
 export default {
   getUrlData,
   addRecipe,
+  fetchRecipes,
 };
