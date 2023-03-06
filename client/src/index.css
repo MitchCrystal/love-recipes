@@ -177,3 +177,34 @@ textarea {
 .card--hover:hover ._imgTagBg > img:first-child {
   transform: translate(-50%, -50%) scale(1.03);
 }
+
+.card-body p {
+  display: block;
+  display: -webkit-box;
+  -webkit-line-clamp: 3;
+  -webkit-box-orient: vertical;
+  height: 4.5rem;
+  overflow: hidden;
+}
+
+.card-actions {
+  justify-content: space-between;
+  margin-top: 0.5rem;
+}
+.card svg,
+.card svg * {
+  fill: hsla(var(--bc) / var(--tw-text-opacity, 1));
+}
+.Rating span {
+  background-color: hsla(var(--bc) / var(--tw-text-opacity, 1));
+}
+
+.Rating span {
+  display: inline-block;
+  width: 24px;
+  height: 24px;
+  opacity: 0.3;
+}
+.Rating .Rating__fill {
+  opacity: 1;
+}

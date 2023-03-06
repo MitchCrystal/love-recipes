@@ -1,4 +1,5 @@
 import React from 'react';
+import Rating from './Rating';
 
 function Card ({ data }) {
   return (
@@ -12,7 +13,8 @@ function Card ({ data }) {
       <div className="card-body">
         <h2 className="card-title">{data.title}</h2>
         <p>{data.description}</p>
-        <div className="card-actions justify-end">
+        <div className="card-actions">
+          <Rating rating={4} />
           <div className="icon-text">
             <svg
               xmlns="http://www.w3.org/2000/svg"
