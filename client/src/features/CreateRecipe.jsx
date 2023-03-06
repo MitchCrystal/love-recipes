@@ -8,10 +8,6 @@ import IngredientsFormList from '../form/IngredientsFormList';
 import InstructionsFormList from '../form/InstructionsFormList';
 import Success from '../utils/Success';
 
-function recipeHasChanged (currRecipe) {
-  return JSON.stringify(originalRecipe) !== JSON.stringify(currRecipe);
-}
-
 const formFields = {
   title: {
     id: 'title',
@@ -78,15 +74,16 @@ function CreateRecipe ({ fetchedRecipe, textContent }) {
 
     const newRecipe = { ...inputs };
 
-    if (recipeHasChanged(newRecipe)) {
-      delete newRecipe.id; // remove current id so that it is assigned a new id
-      newRecipe.original = false;
+    // if (recipeHasChanged(newRecipe)) {
+    // delete newRecipe.id; // remove current id so that it is assigned a new id
+    // newRecipe.original = false;
 
-      BackendService.addRecipe(newRecipe).then((response) => {
-        // Error handling-------
-        console.log(response);
-      });
-    }
+    BackendService.addRecipe(newRecipe).then((response) => {
+      // Error handling-------
+      // Save to database - or if already exists and user hasn't made changes, pretend to save
+      console.log(response);
+    });
+    // }
 
     // add success message
   };

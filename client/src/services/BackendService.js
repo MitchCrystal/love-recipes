@@ -8,7 +8,7 @@ const getUrlData = async (url) => {
       headers: {
         'Content-Type': 'application/json',
       },
-      body: JSON.stringify({ url }),
+      body: JSON.stringify({ extUrl: url }),
     });
     const result = await response.json();
 

@@ -3,17 +3,22 @@
 const { newRecipe, findRecipe, getRecipes } = require('../models/recipe.model');
 const scraper = require('../utils/scrape');
 
+const areEqual = (a, b) => {
+  return JSON.stringify(a) === JSON.stringify(b);
+};
+
 exports.scrapeUrl = async (req, res) => {
   try {
-    const { url } = req.body;
+    const { extUrl } = req.body;
 
-    const dbRecipe = await findRecipe(url); // check DB for recipe
+    const dbRecipe = await findRecipe(extUrl); // check DB for recipe
     let result;
     if (dbRecipe) {
-      dbRecipe.url = '';
+      // recipe already exists
       result = dbRecipe;
     } else {
-      result = await scraper.scrapeUrl(url);
+      // scrape recipe
+      result = await scraper.scrapeUrl(extUrl);
     }
 
     res.status(200);
@@ -27,10 +32,18 @@ exports.scrapeUrl = async (req, res) => {
 exports.addRecipe = async (req, res) => {
   try {
     const recipe = req.body;
-    const response = await newRecipe(recipe);
+
+    let dbRecipe = await findRecipe(recipe.extUrl); // check DB for recipe
+
+    //error handling for response from prisma---------------
+
+    // if recipe not already in DB, save it
+    if (!areEqual(dbRecipe, recipe)) {
+      dbRecipe = await newRecipe(recipe);
+    }
 
     res.status(201);
-    res.send(response);
+    res.send(dbRecipe);
   } catch (error) {
     console.log(`addRecipe error:\n${error}`);
     res.status(400);
