@@ -15,7 +15,7 @@ function Home () {
     <div className="page-home">
       <Dashboard>
         <section className="section">
-          <div className="container mx-auto"></div>
+          <div className="container mx-auto">Home</div>
         </section>
       </Dashboard>
     </div>

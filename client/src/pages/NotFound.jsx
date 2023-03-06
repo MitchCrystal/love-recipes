@@ -1,6 +1,6 @@
 import React from 'react';
 import Dashboard from '../components/Dashboard';
-import { NavLink } from 'react-router-dom';
+import { Link } from 'react-router-dom';
 
 function NotFound () {
   return (
@@ -11,12 +11,12 @@ function NotFound () {
             <div className="flex flex-col flex-wrap content-center text-center">
               <div className="prose lg:prose-xl w-full">
                 <h1>Page not found!</h1>
-                <NavLink
+                <Link
                   className="btn btn-wide mt-8"
                   to="/"
                 >
                   Return to the Home
-                </NavLink>
+                </Link>
               </div>
             </div>
           </div>
