@@ -57,16 +57,23 @@ const inputControl = {
   instructions: [],
 };
 
-let originalRecipe = null;
+const fieldOrder = [
+  'title',
+  'description',
+  'prepTime',
+  'cookTime',
+  'totalTime',
+  'servings',
+];
 
 function CreateRecipe ({ fetchedRecipe, textContent }) {
   const [inputs, setInputs] = useState(inputControl);
 
   useEffect(() => {
     if (fetchedRecipe) {
-      originalRecipe = fetchedRecipe;
       setInputs(fetchedRecipe);
     }
+    console.log(fieldOrder);
   }, [fetchedRecipe]);
 
   const handleSubmit = (e) => {
@@ -110,65 +117,44 @@ function CreateRecipe ({ fetchedRecipe, textContent }) {
 
       <section className="section">
         <div className="container mx-auto">
-          <div className="flex justify-center"></div>
-          <div className="CreateRecipe">
-            <form
-              className="_form _form--create-recipe"
-              onSubmit={handleSubmit}
-            >
-              <div className="_form__inner form-control w-full">
-                <FormInput
-                  field={formFields.title}
-                  value={inputs.title}
-                  setInputs={setInputs}
-                />
-                <FormInput
-                  field={formFields.description}
-                  value={inputs.description}
-                  setInputs={setInputs}
-                />
-                <FormInput
-                  field={formFields.prepTime}
-                  value={inputs.prepTime}
-                  setInputs={setInputs}
-                />
-                <FormInput
-                  field={formFields.cookTime}
-                  value={inputs.cookTime}
-                  setInputs={setInputs}
-                />
-                <FormInput
-                  field={formFields.totalTime}
-                  value={inputs.totalTime}
-                  setInputs={setInputs}
-                />
-                <FormInput
-                  field={formFields.servings}
-                  value={inputs.servings}
-                  setInputs={setInputs}
-                />
+          <div className="flex justify-center">
+            <div className="CreateRecipe">
+              <form
+                className="_form _form--create-recipe"
+                onSubmit={handleSubmit}
+              >
+                <div className="_form__inner form-control w-full">
+                  {fieldOrder.map((field, i) => (
+                    <FormInput
+                      key={i}
+                      field={formFields[field]}
+                      value={inputs[field]}
+                      setInputs={setInputs}
+                    />
+                  ))}
 
-                <IngredientsFormList
-                  field={formFields.ingredients}
-                  list={inputs.ingredients}
-                  setInputs={setInputs}
-                />
+                  <IngredientsFormList
+                    field={formFields.ingredients}
+                    list={inputs.ingredients}
+                    setInputs={setInputs}
+                  />
 
-                <InstructionsFormList
-                  field={formFields.instructions}
-                  list={inputs.instructions}
-                  setInputs={setInputs}
-                />
-              </div>
-              <div className="flex justify-center">
-                <button
-                  type="submit"
-                  className="btn btn-wide mt-6"
-                >
-                  Save Recipe
-                </button>
-              </div>
-            </form>
+                  <InstructionsFormList
+                    field={formFields.instructions}
+                    list={inputs.instructions}
+                    setInputs={setInputs}
+                  />
+                </div>
+                <div className="flex justify-center">
+                  <button
+                    type="submit"
+                    className="btn btn-wide mt-6"
+                  >
+                    Save Recipe
+                  </button>
+                </div>
+              </form>
+            </div>
           </div>
         </div>
       </section>

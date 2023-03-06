@@ -1,17 +1,32 @@
 'use strict';
 
-const { newRecipe, findRecipe, getRecipes } = require('../models/recipe.model');
+const { findRecipe, updateRecipe } = require('../models/recipe.model');
+const prisma = require('../models/db-connect');
 const scraper = require('../utils/scrape');
 
-const areEqual = (a, b) => {
-  return JSON.stringify(a) === JSON.stringify(b);
+const { customAlphabet } = require('nanoid');
+
+const slugify = (str) => {
+  return str
+    .toLowerCase()
+    .trim()
+    .replace(/[^\w\s-]/g, '')
+    .replace(/[\s_-]+/g, '-')
+    .replace(/^-+|-+$/g, '');
+};
+
+const randomUuid = (length = 6) => {
+  const alphabet =
+    '0123456789ABCDEFGHIJKLMNOPQRSTUVWXYZabcdefghijklmnopqrstuvwxyz';
+  const nanoid = customAlphabet(alphabet, length);
+  return nanoid(); //=> "3Ztbty"
 };
 
 exports.scrapeUrl = async (req, res) => {
   try {
     const { extUrl } = req.body;
 
-    const dbRecipe = await findRecipe(extUrl); // check DB for recipe
+    const dbRecipe = await findRecipe({ extUrl }); // check DB for recipe
     let result;
     if (dbRecipe) {
       // recipe already exists
@@ -29,35 +44,72 @@ exports.scrapeUrl = async (req, res) => {
   }
 };
 
-exports.addRecipe = async (req, res) => {
+/*
+--- Todo ---
+Recipe isn't fetched if already exists in the DB, even if it has been altered
+*/
+exports.saveRecipe = async (req, res) => {
   try {
-    const recipe = req.body;
+    const newRecipe = req.body;
 
-    let dbRecipe = await findRecipe(recipe.extUrl); // check DB for recipe
+    let response;
+    if (newRecipe.id) {
+      // if recipe has id, then update
+      response = await updateRecipe(newRecipe);
+    } else {
+      response = await prisma.recipe.findFirst({
+        where: {
+          extUrl: newRecipe.extUrl,
+        },
+      });
 
-    //error handling for response from prisma---------------
-
-    // if recipe not already in DB, save it
-    if (!areEqual(dbRecipe, recipe)) {
-      dbRecipe = await newRecipe(recipe);
+      if (response) {
+        // if recipe extUrl exists in database, then update
+        response = await updateRecipe(newRecipe);
+      } else {
+        // else create new recipe
+        newRecipe.url =
+          '/recipes/' + slugify(newRecipe.title) + '-' + randomUuid();
+        response = await prisma.recipe.create({
+          data: newRecipe,
+        });
+      }
     }
 
     res.status(201);
-    res.send(dbRecipe);
+    res.send(response);
   } catch (error) {
-    console.log(`addRecipe error:\n${error}`);
+    console.log(`saveRecipe error:\n${error}`);
     res.status(400);
   }
 };
 
 exports.allRecipes = async (req, res) => {
   try {
-    const response = await getRecipes();
+    const response = await prisma.recipe.findMany();
 
     res.status(200);
     res.send(response);
   } catch (error) {
     console.log(`allRecipes error:\n${error}`);
+    res.status(500);
+  }
+};
+
+exports.oneRecipe = async (req, res) => {
+  try {
+    const { url } = req.body;
+    let response = await findRecipe({ url });
+
+    if (!response) {
+      res.status(500);
+      res.send({ data: null, error: 'Not found', errorCode: 404 });
+    } else {
+      res.status(200);
+      res.send({ data: response });
+    }
+  } catch (error) {
+    console.log(`oneRecipe error:\n${error}`);
     res.status(500);
   }
 };

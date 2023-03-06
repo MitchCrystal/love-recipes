@@ -8,9 +8,12 @@ const router = require('express').Router();
 router.post('/scrape', recipeController.scrapeUrl);
 
 // Add recipe
-router.post('/recipe', recipeController.addRecipe);
+router.post('/recipe/add', recipeController.saveRecipe);
 
 // Get all recipes
-router.get('/recipes', recipeController.allRecipes);
+router.get('/recipes/get', recipeController.allRecipes);
+
+// Get one recipe
+router.post('/recipe/get', recipeController.oneRecipe);
 
 module.exports = router;
