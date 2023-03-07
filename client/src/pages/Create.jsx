@@ -1,7 +1,7 @@
 import React from 'react';
 
 import Dashboard from '../components/Dashboard';
-import CreateRecipe from '../features/CreateRecipe';
+import CreateRecipe from '../features/recipe/CreateRecipe';
 
 function Create () {
   return (

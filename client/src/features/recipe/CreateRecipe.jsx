@@ -2,51 +2,15 @@ import React from 'react';
 import { useState, useEffect } from 'react';
 import { useNavigate } from 'react-router-dom';
 
-import BackendService from '../services/BackendService';
+import BackendService from '../../services/BackendService';
 
-import FormInput from '../form/FormInput';
-import IngredientsFormList from '../form/IngredientsFormList';
-import InstructionsFormList from '../form/InstructionsFormList';
-import Success from '../utils/Success';
-import Error from '../utils/Error';
+import FormInput from '../../form/FormInput';
+import IngredientsFormList from '../../form/IngredientsFormList';
+import InstructionsFormList from '../../form/InstructionsFormList';
+import Success from '../../utils/Success';
+import Error from '../../utils/Error';
 
-const formFields = {
-  title: {
-    id: 'title',
-    placeholder: 'e.g. Spaghetti Bolognese',
-  },
-  description: {
-    id: 'description',
-  },
-  prepTime: {
-    id: 'prepTime',
-    label: 'Preparation time',
-    placeholder: 'e.g. 20 mins',
-    customClass: ' w-6/12',
-  },
-  cookTime: {
-    id: 'cookTime',
-    label: 'Cook time',
-    customClass: ' w-6/12',
-  },
-  totalTime: {
-    id: 'totalTime',
-    label: 'Total time',
-    customClass: ' w-6/12',
-  },
-  servings: {
-    id: 'servings',
-    placeholder: 'e.g. 4',
-    customClass: ' w-6/12',
-  },
-  ingredients: {
-    id: 'ingredients',
-    placeholder: 'Add ingredient',
-  },
-  instructions: {
-    id: 'instructions',
-  },
-};
+import { recipeDefaultData } from './config';
 
 const inputControl = {
   title: '',
@@ -71,6 +35,7 @@ const fieldOrder = [
 function CreateRecipe ({ fetchedRecipe, textContent }) {
   const navigate = useNavigate();
   const [inputs, setInputs] = useState(inputControl);
+  const [btnloading, setBtnLoading] = useState(false);
   const [error, setError] = useState(false);
 
   useEffect(() => {
@@ -82,6 +47,8 @@ function CreateRecipe ({ fetchedRecipe, textContent }) {
   const handleSubmit = (e) => {
     e.preventDefault();
 
+    setBtnLoading(true);
+
     const newRecipe = { ...inputs };
 
     BackendService.addRecipe(newRecipe).then((response) => {
@@ -91,10 +58,9 @@ function CreateRecipe ({ fetchedRecipe, textContent }) {
         navigate(data.url, { state: { success } });
       } else {
         setError(response.error);
+        setBtnLoading(false);
       }
     });
-
-    // add success message
   };
 
   return (
@@ -129,20 +95,20 @@ function CreateRecipe ({ fetchedRecipe, textContent }) {
                   {fieldOrder.map((field, i) => (
                     <FormInput
                       key={i}
-                      field={formFields[field]}
+                      field={recipeDefaultData[field]}
                       value={inputs[field]}
                       setInputs={setInputs}
                     />
                   ))}
 
                   <IngredientsFormList
-                    field={formFields.ingredients}
+                    field={recipeDefaultData.ingredients}
                     list={inputs.ingredients}
                     setInputs={setInputs}
                   />
 
                   <InstructionsFormList
-                    field={formFields.instructions}
+                    field={recipeDefaultData.instructions}
                     list={inputs.instructions}
                     setInputs={setInputs}
                   />
@@ -150,7 +116,9 @@ function CreateRecipe ({ fetchedRecipe, textContent }) {
                 <div className="flex flex-col items-center">
                   <button
                     type="submit"
-                    className="btn btn-wide mt-6"
+                    className={`btn btn-wide mt-6${
+                      btnloading ? ' loading' : ''
+                    }`}
                   >
                     Save Recipe
                   </button>

@@ -7,6 +7,7 @@
   --p: 98deg 32% 45%;
   --s: 99deg 25% 65%;
   --a: 99deg 24% 86%;
+  --dark: #69974f;
   --rounded-box: 0.5rem;
   --base-200: #fff4d6;
 }
@@ -48,6 +49,11 @@
   border: 1px solid #c53030;
 }
 
+* {
+  --tw-drop-shadow: drop-shadow(0 20px 13px rgb(0 0 0 / 0.03))
+    drop-shadow(0 8px 5px rgb(0 0 0 / 12%)) !important;
+}
+
 /*--- Defaults ---*/
 textarea {
   max-height: 150px;
@@ -55,7 +61,7 @@ textarea {
 
 /*--- Global ---*/
 .section {
-  margin: 60px;
+  margin: 60px 0;
   padding: 0 15px;
 }
 .section--pad {
@@ -94,8 +100,14 @@ textarea {
   height: 8px;
   border-radius: 50%;
   background-color: hsla(var(--bc) / 0.8);
-  margin-top: 1.3rem;
+  margin-top: 0.6rem;
   margin-right: 0.8rem;
+}
+._list--inputs li {
+  position: relative;
+}
+._list--inputs:not(._list--numbers) li:before {
+  margin-top: 1.3rem;
 }
 ._list--numbers > li:before {
   counter-increment: listCount;
@@ -118,8 +130,80 @@ textarea {
 ._list--bg-alt > li:nth-child(odd) {
   background-color: hsl(var(--a));
 }
+._list--bg-alt > li:nth-child(even) {
+  border: 2px solid hsl(var(--a));
+}
 ._list--numbers._list--bg-alt > li:nth-child(odd):before {
   background-color: #ffffff;
+}
+
+._list--dark li:before {
+  background-color: var(--dark) !important;
+}
+._list--numbers._list--dark li:before {
+  color: #ffffff;
+  border: none;
+}
+
+._list--inputs ._list__itemBtn {
+  position: absolute;
+  top: 50%;
+  left: -0.4rem;
+  width: 20px;
+  height: 20px;
+  transform: translateY(-50%);
+  opacity: 0;
+  z-index: -1;
+  transition: 0.2s all;
+}
+._list--inputs--close-top-right ._list__itemBtn {
+  top: 0.5rem;
+  left: unset;
+  right: 0.5rem;
+  transform: none;
+}
+._list__itemBtn .btn-circle {
+  width: 1.3rem;
+  height: 1.3rem;
+  min-height: 1.3rem;
+  background-color: #c53030;
+  border-color: #c53030;
+}
+._list__itemBtn .btn-circle svg {
+  width: 85%;
+  height: 85%;
+}
+._list--inputs li:hover ._list__itemBtn {
+  opacity: 1;
+  z-index: 0;
+}
+
+.labelText {
+  margin-top: 1rem;
+}
+.labelText__label {
+  color: var(--dark);
+  font-weight: bold;
+  font-size: 1.1rem;
+  margin-bottom: 0.7rem;
+}
+.labelText__text {
+  font-size: 1.05rem;
+}
+.labelText--big .labelText__label {
+  font-size: 1.2rem;
+  margin-bottom: 1rem;
+}
+
+.titleText__title {
+  font-size: 1.7rem;
+}
+
+.loader {
+  height: 100vh;
+  display: flex;
+  align-items: center;
+  justify-content: center;
 }
 
 /*--- Custom ---*/
@@ -171,6 +255,16 @@ textarea {
   width: 24px;
   height: 24px;
   margin-right: 0.5rem;
+}
+
+.btn-circle {
+  width: 2.5rem;
+  height: 2.5rem;
+  min-height: 2.5rem;
+}
+.btn-circle svg {
+  width: 75%;
+  height: 75%;
 }
 
 /*--- Components ---*/

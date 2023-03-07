@@ -1,4 +1,4 @@
-import CreateRecipe from './CreateRecipe';
-import DownloadRecipeForm from './DownloadRecipeForm';
+import CreateRecipe from './recipe/CreateRecipe';
+import DownloadRecipeForm from './recipe/DownloadRecipeForm';
 
 export { CreateRecipe, DownloadRecipeForm };

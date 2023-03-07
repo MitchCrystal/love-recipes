@@ -37,10 +37,11 @@ exports.scrapeUrl = async (req, res) => {
     }
 
     res.status(200);
-    res.send(result);
+    res.send({ data: result });
   } catch (error) {
     console.log(`scrapeUrl error:\n${error}`);
     res.status(400);
+    res.send({ data: null, error: 'Invalid URL', errorCode: 404 });
   }
 };
 
@@ -49,6 +50,7 @@ exports.scrapeUrl = async (req, res) => {
 Recipe isn't fetched if already exists in the DB, even if it has been altered
 */
 exports.saveRecipe = async (req, res) => {
+  let resultStatus = 400;
   let result = {
     data: null,
     error: 'Unable to save recipe. Please refresh and try again',
@@ -93,7 +95,9 @@ exports.saveRecipe = async (req, res) => {
       }
     }
 
-    res.status(201);
+    if (result.data) resultStatus = 200;
+
+    res.status(resultStatus);
     res.send(result);
   } catch (error) {
     console.log(`saveRecipe error:\n${error}`);

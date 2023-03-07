@@ -1,11 +1,5 @@
 import React from 'react';
-import PropTypes from 'prop-types';
-
-FormInput.propTypes = {
-  field: PropTypes.object.isRequired,
-  value: PropTypes.string,
-  setInputs: PropTypes.func.isRequired,
-};
+import { getRecipeDataLabel } from '../features/recipe/config';
 
 function FormInput ({ field, value, setInputs }) {
   return (
@@ -15,9 +9,7 @@ function FormInput ({ field, value, setInputs }) {
       }`}
     >
       <label className="label">
-        <span className="label-text">
-          {field.label || field.id[0].toUpperCase() + field.id.slice(1)}
-        </span>
+        <span className="label-text">{getRecipeDataLabel(field)}</span>
       </label>
       <input
         type="text"

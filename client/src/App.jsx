@@ -28,7 +28,6 @@ function App () {
         <Route
           path="/recipes/:url"
           element={<Recipe />}
-          errorElement={<NotFound />}
         />
         <Route
           path="*"

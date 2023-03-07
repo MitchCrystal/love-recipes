@@ -1,7 +1,16 @@
-import React from 'react';
+import React, { useEffect, useState } from 'react';
 import Collapse from '../utils/Collapse';
+import { svgPlus, svgClose } from '../assets/svg';
+
+const newIngredient = '';
 
 function IngredientsFormList ({ field, list, setInputs }) {
+  const [showAdd, setShowAdd] = useState(false);
+
+  useEffect(() => {
+    setShowAdd(list.length > 0 && list[list.length - 1] !== '');
+  });
+
   // Update state ingredients array if one ingredient is changed
   const handleChange = (e, index) => {
     setInputs((prev) => {
@@ -11,9 +20,39 @@ function IngredientsFormList ({ field, list, setInputs }) {
     });
   };
 
+  const addIngredient = () => {
+    setInputs((prev) => {
+      const newState = { ...prev };
+      newState[field.id].push(newIngredient);
+      return newState;
+    });
+  };
+
+  const deleteIngredient = (index) => {
+    setInputs((prev) => {
+      const newState = { ...prev };
+      newState[field.id].splice(index, 1);
+      return newState;
+    });
+  };
+
   const renderIngredient = (value, count) => {
     return (
       <li key={count}>
+        {list.length > 1 ? (
+          <div className="_list__itemBtn">
+            <button
+              className="btn btn-circle"
+              type="button"
+              onClick={() => deleteIngredient(count)}
+            >
+              {svgClose}
+            </button>
+          </div>
+        ) : (
+          ''
+        )}
+
         <input
           type="text"
           placeholder={field.placeholder}
@@ -37,13 +76,29 @@ function IngredientsFormList ({ field, list, setInputs }) {
         <Collapse
           title="Ingredients"
           content={
-            <ul className="_list">
-              {list.length
-                ? list.map((ingredient, i) => {
-                  return renderIngredient(ingredient, i);
-                })
-                : renderIngredient('', 0)}
-            </ul>
+            <>
+              <ul className="_list _list--inputs">
+                {list.length
+                  ? list.map((ingredient, i) => {
+                    return renderIngredient(ingredient, i);
+                  })
+                  : renderIngredient('', 0)}
+              </ul>
+
+              {showAdd ? (
+                <div className="flex justify-center mt-6">
+                  <button
+                    className="btn btn-circle"
+                    type="button"
+                    onClick={addIngredient}
+                  >
+                    {svgPlus}
+                  </button>
+                </div>
+              ) : (
+                ''
+              )}
+            </>
           }
         />
       </div>

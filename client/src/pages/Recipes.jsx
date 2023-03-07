@@ -32,12 +32,19 @@ function Recipes () {
   return (
     <div className="page-recipes">
       <Dashboard>
-        {allRecipes.length && (
+        {allRecipes.length ? (
           <section className="section">
-            <div className="container mx-auto">
-              <Carousel>{renderRecipeCards(allRecipes)}</Carousel>
-            </div>
+            <Carousel>{renderRecipeCards(allRecipes)}</Carousel>
           </section>
+        ) : (
+          <div className="loader">
+            <img
+              src="/src/assets/images/loader-3.gif"
+              alt="loader"
+              width="40"
+              height="40"
+            />
+          </div>
         )}
       </Dashboard>
     </div>
