@@ -15,10 +15,6 @@ function Recipes () {
     });
   }, []);
 
-  useEffect(() => {
-    console.log(allRecipes);
-  });
-
   const renderRecipeCards = (recipes) => {
     const cards = recipes.map((recipe, i) => (
       <Card

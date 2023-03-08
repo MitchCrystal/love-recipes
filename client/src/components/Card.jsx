@@ -2,12 +2,21 @@ import React from 'react';
 import { Link } from 'react-router-dom';
 
 import Rating from './Rating';
-import { svgClock } from '../assets/svg';
+import { svgClock, svgEdit } from '../assets/svg';
 
 function Card ({ data }) {
   return (
-    <Link to={data.url}>
-      <div className="card card-normal card--hover w-96 bg-base-100 shadow-md">
+    <div className="card card-normal card--hover w-96 bg-base-100 shadow-md">
+      <div className="card__hovers">
+        <Link
+          to={`${data.url}?edit`}
+          className="btn btn-icon btn-sm"
+        >
+          Edit
+          {svgEdit}
+        </Link>
+      </div>
+      <Link to={data.url}>
         <figure className="card-image _imgTagBg">
           <img
             src={data.image}
@@ -25,8 +34,8 @@ function Card ({ data }) {
             </div>
           </div>
         </div>
-      </div>
-    </Link>
+      </Link>
+    </div>
   );
 }
 

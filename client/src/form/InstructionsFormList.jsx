@@ -52,7 +52,7 @@ function InstructionsFormList ({ field, list, setInputs }) {
   };
 
   const renderInstruction = (value, count) => {
-    const { title, instructions } = value || { title: '', instructions: [] };
+    const { title, instructions } = value || newInstruction;
 
     return (
       <li
@@ -99,7 +99,7 @@ function InstructionsFormList ({ field, list, setInputs }) {
             <textarea
               className="textarea textarea-bordered h-24"
               name={`${field.id}-${count}`}
-              value={instructions.join(newLineChar)}
+              value={instructions ? instructions.join(newLineChar) : ''}
               onChange={(e) => handleChange(e, count, 'instructions')}
             ></textarea>
           </div>
@@ -123,7 +123,7 @@ function InstructionsFormList ({ field, list, setInputs }) {
                 ? list.map((val, i) => {
                   return renderInstruction(val, i);
                 })
-                : renderInstruction('', 0)}
+                : renderInstruction(newInstruction, 0)}
             </ol>
 
             {showAdd ? (

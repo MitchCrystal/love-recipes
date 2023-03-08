@@ -8,7 +8,7 @@ import Error from '../../utils/Error';
 const domain = 'https://www.simplyrecipes.com/';
 
 const inputControl = {
-  url: 'homemade-granola-bars-recipe-5187715',
+  url: '',
 };
 
 function DownloadRecipeForm ({ setRecipe }) {
