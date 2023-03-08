@@ -40,8 +40,8 @@ exports.scrapeUrl = async (req, res) => {
     res.send({ data: result });
   } catch (error) {
     console.log(`scrapeUrl error:\n${error}`);
-    res.status(400);
     res.send({ data: null, error: 'Invalid URL', errorCode: 404 });
+    res.status(400);
   }
 };
 
@@ -68,11 +68,14 @@ exports.saveRecipe = async (req, res) => {
         success: 'Successfully updated recipe',
       };
     } else {
-      const dbRecipe = await prisma.recipe.findFirst({
-        where: {
-          extUrl: newRecipe.extUrl,
-        },
-      });
+      let dbRecipe = null;
+      if (newRecipe.extUrl) {
+        dbRecipe = await prisma.recipe.findFirst({
+          where: {
+            extUrl: newRecipe.extUrl,
+          },
+        });
+      }
 
       if (dbRecipe) {
         // if recipe extUrl exists in database, then update

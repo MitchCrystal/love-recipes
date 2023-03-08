@@ -1,6 +1,6 @@
 import React from 'react';
 import { useState, useEffect } from 'react';
-import { useNavigate } from 'react-router-dom';
+import { useLocation, useNavigate } from 'react-router-dom';
 
 import BackendService from '../../services/BackendService';
 
@@ -32,17 +32,18 @@ const fieldOrder = [
   'servings',
 ];
 
-function CreateRecipe ({ fetchedRecipe, textContent }) {
-  const navigate = useNavigate();
+function CreateRecipe ({ recipe, title, textContent }) {
   const [inputs, setInputs] = useState(inputControl);
   const [btnloading, setBtnLoading] = useState(false);
   const [error, setError] = useState(false);
+  const location = useLocation();
+  const navigate = useNavigate();
 
   useEffect(() => {
-    if (fetchedRecipe) {
-      setInputs(fetchedRecipe);
+    if (recipe) {
+      setInputs(recipe);
     }
-  }, [fetchedRecipe]);
+  }, [recipe]);
 
   const handleSubmit = (e) => {
     e.preventDefault();
@@ -55,7 +56,7 @@ function CreateRecipe ({ fetchedRecipe, textContent }) {
       // Save to database - or if already exists and user hasn't made changes, pretend to save
       if (response.data) {
         const { data, success } = response;
-        navigate(data.url, { state: { success } });
+        navigate(data.url, { state: { recipe: data, success } });
       } else {
         setError(response.error);
         setBtnLoading(false);
@@ -68,15 +69,14 @@ function CreateRecipe ({ fetchedRecipe, textContent }) {
       <section className="section">
         <div className="container mx-auto">
           <div className="flex flex-col flex-wrap content-center text-center">
-            {fetchedRecipe && (
-              <Success
-                className="mb-8"
-                text="Recipe imported successfully!"
-              />
+            {location.state && location.state.success && (
+              <section className="section flex justify-center">
+                <Success text={location.state.success} />
+              </section>
             )}
 
             <div className="prose lg:prose-xl w-full">
-              <h1>Create Recipe</h1>
+              <h1>{title}</h1>
               {textContent && <p>{textContent}</p>}
             </div>
           </div>
