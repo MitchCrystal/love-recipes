@@ -1,5 +1,7 @@
 # Love Recipes
 
+<img width="379" alt="love-recipes-logo" src="https://user-images.githubusercontent.com/22393641/223698475-c82ffc39-5999-4851-bf2b-fcdfe118b4c4.png">
+
 At Love Recipes we love recipes :heart:
 
 Store your favourite recipes with ease and import recipes from websites.
