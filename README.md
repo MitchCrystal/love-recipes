@@ -1,6 +1,6 @@
 # Love Recipes
 
-<img width="379" alt="love-recipes-logo" src="https://user-images.githubusercontent.com/22393641/223698475-c82ffc39-5999-4851-bf2b-fcdfe118b4c4.png">
+![loverecipeslogo](https://user-images.githubusercontent.com/22393641/223698475-c82ffc39-5999-4851-bf2b-fcdfe118b4c4.png)
 
 At Love Recipes we love recipes :heart:
 
@@ -29,7 +29,7 @@ Store your favourite recipes with ease and import recipes from websites.
 ### Getting started
 
 - From `/` run `npm run install-all-deps` to install all dependecies
-- Create `/server/.env` file using `/server/.env-example`
+- Create `.env` files in `/server` and `/client` (see examples `.env-example`)
 - Start: From `/` run dev environment: `npm run dev`
 - Database UI: From `/` run `npm run db-ui`
 
