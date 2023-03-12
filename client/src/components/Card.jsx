@@ -17,7 +17,7 @@ function Card ({ data , onDelete}) {
         </Link>
         
         <button
-          className="btn btn-icon btn-sm"
+          className="btn btn-icon btn-sm btn-dele"
           onClick= {() => onDelete(data.id)}
         >
           Delete
