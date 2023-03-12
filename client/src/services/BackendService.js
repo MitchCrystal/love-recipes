@@ -67,9 +67,29 @@ const fetchRecipe = async (url) => {
   }
 };
 
+const deleteRecipe = async (id) => {
+  console.log("before fetching in deleteRecipe: " + id);
+  try {
+    const response = await fetch(`${domain}/recipes/${id}`, {
+      method: 'DELETE',
+      mode: 'cors',
+      headers: {
+        'Content-Type': 'application/json',
+      }
+    });
+
+    const result = await response.json();
+
+    return result;
+  } catch (error) {
+    console.log('deleteRecipe error:\n', error);
+  }
+};
+
 export default {
   getUrlData,
   addRecipe,
   fetchRecipes,
   fetchRecipe,
+  deleteRecipe
 };

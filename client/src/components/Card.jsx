@@ -2,9 +2,9 @@ import React from 'react';
 import { Link } from 'react-router-dom';
 
 import Rating from './Rating';
-import { svgClock, svgEdit } from '../assets/svg';
+import { svgClock, svgEdit, svgClose } from '../assets/svg';
 
-function Card ({ data }) {
+function Card ({ data , onDelete}) {
   return (
     <div className="card card-normal card--hover w-96 bg-base-100 shadow-md">
       <div className="card__hovers">
@@ -15,7 +15,16 @@ function Card ({ data }) {
           Edit
           {svgEdit}
         </Link>
-      </div>
+        
+        <button
+          className="btn btn-icon btn-sm"
+          onClick= {() => onDelete(data.id)}
+        >
+          Delete
+          {svgClose}
+        </button>
+    </div>
+
       <Link to={data.url}>
         <figure className="card-image _imgTagBg">
           <img
