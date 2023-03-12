@@ -15,11 +15,18 @@ function Recipes () {
     });
   }, []);
 
+  const deleteRecipe = (id)  =>{
+     BackendService.deleteRecipe(id).then((response) => {
+       setAllRecipes(allRecipes.filter((recipe) => recipe.id !== id));
+    });  
+  }
+
   const renderRecipeCards = (recipes) => {
     const cards = recipes.map((recipe, i) => (
       <Card
         key={i}
         data={recipe}
+        onDelete={deleteRecipe}
       />
     ));
     return cards;
@@ -34,12 +41,13 @@ function Recipes () {
           </section>
         ) : (
           <div className="loader">
-            <img
+            No recipes found.
+            {/* <img
               src="/src/assets/images/loader-3.gif"
               alt="loader"
               width="40"
               height="40"
-            />
+            /> */}
           </div>
         )}
       </Dashboard>

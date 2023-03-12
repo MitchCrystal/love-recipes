@@ -271,6 +271,7 @@ textarea {
   display: flex;
   align-items: center;
   color: #ffffff !important;
+  margin-top: 0.75rem;
 }
 .btn-icon svg {
   margin-left: 0.5rem;
