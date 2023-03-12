@@ -1,6 +1,6 @@
-const prisma = require('./db-connect');
+import {prisma} from './db-connect';
 
-exports.findRecipe = async (options) => {
+const findRecipe = async (options:any) => {
   const response = await prisma.recipe.findFirst({
     where: options,
   });
@@ -8,7 +8,7 @@ exports.findRecipe = async (options) => {
   return response;
 };
 
-exports.updateRecipe = async (newRecipe) => {
+const updateRecipe = async (newRecipe:any) => {
   const response = await prisma.recipe.update({
     where: {
       id: newRecipe.id,
@@ -21,9 +21,11 @@ exports.updateRecipe = async (newRecipe) => {
   return response;
 };
 
-exports.deleteRecipe = async (id)  => {
+const deleteOneRecipe = async (id:string)  => {
   const response = await prisma.recipe.delete({
-    where: id,
+    where: {id: id},
   });
   return response;
 };
+
+export { findRecipe, updateRecipe, deleteOneRecipe};

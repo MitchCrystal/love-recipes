@@ -1,12 +1,25 @@
 'use strict';
 
-const { findRecipe, updateRecipe,deleteRecipe } = require('../models/recipe.model');
-const prisma = require('../models/db-connect');
+import { Request, Response } from "express";
+
+import { findRecipe, updateRecipe, deleteOneRecipe } from '../models/recipe.model';
+import {prisma} from '../models/db-connect';
+//const prisma = require('../models/db-connect');
+//import scraper from '../utils/scrape';
+
+import { customAlphabet } from 'nanoid';
+
+
+// const { findRecipe, updateRecipe } = require('../models/recipe.model');
+// const prisma = require('../models/db-connect');
 const scraper = require('../utils/scrape');
+// const { customAlphabet } = require('nanoid');
 
-const { customAlphabet } = require('nanoid');
 
-const slugify = (str) => {
+
+
+
+const slugify = (str:string) => {
   return str
     .toLowerCase()
     .trim()
@@ -22,7 +35,7 @@ const randomUuid = (length = 6) => {
   return nanoid(); //=> "3Ztbty"
 };
 
-exports.scrapeUrl = async (req, res) => {
+const scrapeUrl = async (req: Request, res: Response) => {
   try {
     const { extUrl } = req.body;
 
@@ -49,11 +62,11 @@ exports.scrapeUrl = async (req, res) => {
 --- Todo ---
 Recipe isn't fetched if already exists in the DB, even if it has been altered
 */
-exports.saveRecipe = async (req, res) => {
+const saveRecipe = async (req: Request, res: Response) => {
   let resultStatus = 400;
   let result = {
-    data: null,
-    error: 'Unable to save recipe. Please refresh and try again',
+    data: {},
+    success: ""
   };
 
   try {
@@ -65,7 +78,7 @@ exports.saveRecipe = async (req, res) => {
       response = await updateRecipe(newRecipe);
       result = {
         data: response,
-        success: 'Successfully updated recipe',
+        success:'Successfully updated recipe',
       };
     } else {
       let dbRecipe = null;
@@ -102,14 +115,17 @@ exports.saveRecipe = async (req, res) => {
 
     res.status(resultStatus);
     res.send(result);
-  } catch (error) {
+  } catch (error:any) {
     console.log(`saveRecipe error:\n${error}`);
-    res.send(result);
+    res.send({
+        data: {},
+        error: error.message
+      });
     res.status(400);
   }
 };
 
-exports.allRecipes = async (req, res) => {
+const allRecipes = async (req: Request, res: Response) => {
   try {
     const response = await prisma.recipe.findMany();
 
@@ -121,7 +137,7 @@ exports.allRecipes = async (req, res) => {
   }
 };
 
-exports.oneRecipe = async (req, res) => {
+const oneRecipe = async (req: Request, res: Response) => {
   try {
     const { url } = req.body;
     let response = await findRecipe({ url });
@@ -139,10 +155,10 @@ exports.oneRecipe = async (req, res) => {
   }
 };
 
-exports.deleteRecipe =  async (req, res) => {
+const deleteRecipe =  async (req: Request, res: Response) => {
   try { 
-    const id= req.params["id"];
-    let response = await deleteRecipe({ id });
+    const id = req.params["id"].toString();
+    let response = await deleteOneRecipe( id );
     if (!response) {
       res.status(500);
       res.send({ data: null, error: 'Not found', errorCode: 404 });
@@ -155,3 +171,5 @@ exports.deleteRecipe =  async (req, res) => {
     res.status(500);
   }
 };
+
+export {scrapeUrl,saveRecipe,allRecipes,oneRecipe,deleteRecipe}
