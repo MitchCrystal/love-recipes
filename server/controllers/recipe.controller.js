@@ -1,6 +1,6 @@
 'use strict';
 
-const { findRecipe, updateRecipe } = require('../models/recipe.model');
+const { findRecipe, updateRecipe,deleteRecipe } = require('../models/recipe.model');
 const prisma = require('../models/db-connect');
 const scraper = require('../utils/scrape');
 
@@ -135,6 +135,23 @@ exports.oneRecipe = async (req, res) => {
     }
   } catch (error) {
     console.log(`oneRecipe error:\n${error}`);
+    res.status(500);
+  }
+};
+
+exports.deleteRecipe =  async (req, res) => {
+  try { 
+    const id= req.params["id"];
+    let response = await deleteRecipe({ id });
+    if (!response) {
+      res.status(500);
+      res.send({ data: null, error: 'Not found', errorCode: 404 });
+    } else {
+      res.status(200);
+      res.send({ data: response });
+    }
+  } catch (error) {
+    console.log(`deleteRecipe error:\n${error}`);
     res.status(500);
   }
 };
