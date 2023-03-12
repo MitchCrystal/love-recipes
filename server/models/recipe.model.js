@@ -20,3 +20,10 @@ exports.updateRecipe = async (newRecipe) => {
 
   return response;
 };
+
+exports.deleteRecipe = async (id)  => {
+  const response = await prisma.recipe.delete({
+    where: id,
+  });
+  return response;
+};

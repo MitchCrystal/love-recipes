@@ -16,4 +16,7 @@ router.get('/recipes/get', recipeController.allRecipes);
 // Get one recipe
 router.post('/recipe/get', recipeController.oneRecipe);
 
+// Delete one recipe
+router.delete('/recipes/:id', recipeController.deleteRecipe);
+
 module.exports = router;
