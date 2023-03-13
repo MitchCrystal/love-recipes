@@ -12,10 +12,10 @@ router.post('/scrape', scrapeUrl);
 router.post('/recipe/add', saveRecipe);
 
 // Get all recipes
-router.get('/recipes/get', allRecipes);
+router.get('/recipes', allRecipes);
 
 // Get one recipe
-router.post('/recipe/get', oneRecipe);
+router.get('/recipes/:url', oneRecipe);
 
 // Delete one recipe
 router.delete('/recipes/:id', deleteRecipe);

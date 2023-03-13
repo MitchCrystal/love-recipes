@@ -1,22 +1,10 @@
 'use strict';
 
 import { Request, Response } from "express";
-
 import { findRecipe, updateRecipe, deleteOneRecipe } from '../models/recipe.model';
 import {prisma} from '../models/db-connect';
-//const prisma = require('../models/db-connect');
-//import scraper from '../utils/scrape';
-
 import { customAlphabet } from 'nanoid';
-
-
-// const { findRecipe, updateRecipe } = require('../models/recipe.model');
-// const prisma = require('../models/db-connect');
 const scraper = require('../utils/scrape');
-// const { customAlphabet } = require('nanoid');
-
-
-
 
 
 const slugify = (str:string) => {
@@ -39,7 +27,7 @@ const scrapeUrl = async (req: Request, res: Response) => {
   try {
     const { extUrl } = req.body;
 
-    const dbRecipe = await findRecipe({ extUrl }); // check DB for recipe
+    const dbRecipe = await findRecipe(extUrl); // check DB for recipe
     let result;
     if (dbRecipe) {
       // recipe already exists
@@ -139,8 +127,9 @@ const allRecipes = async (req: Request, res: Response) => {
 
 const oneRecipe = async (req: Request, res: Response) => {
   try {
-    const { url } = req.body;
-    let response = await findRecipe({ url });
+    const url  = "/recipes/" + req.params["url"].toString();
+    console.log("url: " + url);
+    let response = await findRecipe(url);
 
     if (!response) {
       res.status(500);

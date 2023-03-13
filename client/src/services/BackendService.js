@@ -39,7 +39,7 @@ const addRecipe = async (newRecipe) => {
 
 const fetchRecipes = async () => {
   try {
-    const response = await fetch(`${domain}/recipes/get`, {
+    const response = await fetch(`${domain}/recipes`, {
       method: 'GET',
     });
     const result = await response.json();
@@ -51,13 +51,13 @@ const fetchRecipes = async () => {
 
 const fetchRecipe = async (url) => {
   try {
-    const response = await fetch(`${domain}/recipe/get`, {
-      method: 'POST',
+    const response = await fetch(`${domain}${url}`, {
+      method: 'GET',
       mode: 'cors',
       headers: {
         'Content-Type': 'application/json',
       },
-      body: JSON.stringify({ url }),
+      //body: JSON.stringify({ url }),
     });
     const result = await response.json();
     return result;
