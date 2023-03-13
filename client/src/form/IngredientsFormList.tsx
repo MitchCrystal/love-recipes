@@ -12,7 +12,7 @@ function IngredientsFormList ({ field, list, setInputs }) {
   });
 
   // Update state ingredients array if one ingredient is changed
-  const handleChange = (e, index) => {
+  const handleChange = (e: Event, index: number) => {
     setInputs((prev) => {
       const newState = { ...prev };
       newState[field.id][index] = e.target.value;
@@ -28,7 +28,7 @@ function IngredientsFormList ({ field, list, setInputs }) {
     });
   };
 
-  const deleteIngredient = (index) => {
+  const deleteIngredient = (index:number) => {
     setInputs((prev) => {
       const newState = { ...prev };
       newState[field.id].splice(index, 1);

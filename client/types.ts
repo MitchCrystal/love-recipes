@@ -17,13 +17,13 @@ export interface Recipe {
 
 }
 
-export interface SavedRecipe {
+export interface SavedRecipe extends Recipe {
   id: string,
   url: string,
   original: boolean,
-  owner: any,  //must correct this
-  createdAt: any, //must correct this
-  updatedAt: any,  //must correct this
+  owner: any,  //NEED TO UPDATE THIS
+  createdAt: any, //NEED TO UPDATE THIS
+  updatedAt: any,  //NEED TO UPDATE THIS
   authorId: string
 }
 
@@ -35,3 +35,7 @@ export type User = {
   Recipe?: any[]
 }
 
+export interface SuccessErrorProps {
+  text: string;
+  className: any //NEED TO UPDATE THIS - PROBABLY NEEDS EXTEND
+}

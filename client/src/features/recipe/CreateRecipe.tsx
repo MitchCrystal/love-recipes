@@ -45,7 +45,7 @@ function CreateRecipe ({ recipe, title, textContent }) {
     }
   }, [recipe]);
 
-  const handleSubmit = (e) => {
+  const handleSubmit = (e: Event) => {
     e.preventDefault();
 
     setBtnLoading(true);

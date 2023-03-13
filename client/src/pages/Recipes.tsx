@@ -1,5 +1,6 @@
 import React from 'react';
 import { useState, useEffect } from 'react';
+import { SavedRecipe } from '../../types';
 import Card from '../components/Card';
 import Carousel from '../components/Carousel';
 
@@ -15,13 +16,13 @@ function Recipes () {
     });
   }, []);
 
-  const deleteRecipe = (id)  =>{
+  const deleteRecipe = (id: string)  =>{
      BackendService.deleteRecipe(id).then((response) => {
-       setAllRecipes(allRecipes.filter((recipe) => recipe.id !== id));
-    });  
+       setAllRecipes(allRecipes.filter((recipe: SavedRecipe) => recipe.id !== id));
+    });
   }
 
-  const renderRecipeCards = (recipes) => {
+  const renderRecipeCards = (recipes: SavedRecipe[]) => {
     const cards = recipes.map((recipe, i) => (
       <Card
         key={i}
