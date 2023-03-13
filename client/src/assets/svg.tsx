@@ -1,6 +1,6 @@
 import React from 'react';
 
-export const svgLogo = (
+export const svgLogo:JSX.Element = (
   <svg
     xmlns="http://www.w3.org/2000/svg"
     viewBox="0 0 24 24"
@@ -14,7 +14,7 @@ export const svgLogo = (
   </svg>
 );
 
-export const svgPlus = (
+export const svgPlus:JSX.Element = (
   <svg
     xmlns="http://www.w3.org/2000/svg"
     viewBox="0 0 24 24"
@@ -32,7 +32,7 @@ export const svgPlus = (
   </svg>
 );
 
-export const svgClock = (
+export const svgClock:JSX.Element = (
   <svg
     xmlns="http://www.w3.org/2000/svg"
     viewBox="0 0 32 32"
@@ -46,7 +46,7 @@ export const svgClock = (
   </svg>
 );
 
-export const svgClose = (
+export const svgClose:JSX.Element = (
   <svg
     xmlns="http://www.w3.org/2000/svg"
     viewBox="0 0 32 32"
@@ -58,7 +58,7 @@ export const svgClose = (
   </svg>
 );
 
-export const svgEdit = (
+export const svgEdit:JSX.Element = (
   <svg
     xmlns="http://www.w3.org/2000/svg"
     viewBox="0 0 512 512"
