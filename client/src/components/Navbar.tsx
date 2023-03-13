@@ -3,7 +3,7 @@ import { Link, NavLink } from 'react-router-dom';
 
 import { svgLogo } from '../assets/svg';
 
-function Navbar () {
+function Navbar ():JSX.Element {
   return (
     <div className="Navbar">
       <div className="navbar mb-2 shadow-lg bg-primary">
@@ -53,7 +53,7 @@ function Navbar () {
         <div className="navbar-end">
           <div className="dropdown dropdown-end">
             <div
-              tabIndex="0"
+              tabIndex={0}
               className="btn btn-ghost rounded-btn"
             >
               <div className="avatar">
@@ -63,7 +63,7 @@ function Navbar () {
               </div>
             </div>
             <ul
-              tabIndex="0"
+              tabIndex={0}
               className="p-2 shadow menu dropdown-content bg-base-100 rounded-box w-52"
             >
               <li>
