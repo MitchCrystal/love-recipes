@@ -1,7 +1,8 @@
 import React from 'react';
+import { FormInputProps } from '../../types';
 import { getRecipeDataLabel } from '../features/recipe/config';
 
-function FormInput ({ field, value, setInputs }) {
+function FormInput ({ field, value, setInputs }:FormInputProps) {
   return (
     <div
       className={`_form__field _form__field--${field.id}${

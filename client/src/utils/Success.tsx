@@ -1,9 +1,9 @@
 import React from 'react';
-import { SuccessErrorProps } from '../../types';
+import { SuccessProps } from '../../types';
 
-function Success ({ className, text }:SuccessErrorProps) {
+function Success ({ text }:SuccessProps) {
   return (
-    <div className={`Success ${className}`}>
+    <div className={`Success`}>
       <div className="alert alert-success text-center">
         <label>{text}</label>
       </div>

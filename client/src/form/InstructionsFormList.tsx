@@ -1,11 +1,12 @@
 import React, { useEffect, useState } from 'react';
 import Collapse from '../utils/Collapse';
 import { svgPlus, svgClose } from '../assets/svg';
+import { InstructionsFormProps } from '../../types';
 
 const newLineChar = '\n';
 const newInstruction = { title: '', instructions: [] };
 
-function InstructionsFormList ({ field, list, setInputs }) {
+function InstructionsFormList ({ field, list, setInputs }:InstructionsFormProps) {
   const [showAdd, setShowAdd] = useState(false);
 
   useEffect(() => {

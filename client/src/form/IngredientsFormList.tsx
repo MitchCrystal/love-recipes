@@ -1,10 +1,11 @@
 import React, { useEffect, useState } from 'react';
 import Collapse from '../utils/Collapse';
 import { svgPlus, svgClose } from '../assets/svg';
+import { IngredientsFormProps } from '../../types';
 
 const newIngredient = '';
 
-function IngredientsFormList ({ field, list, setInputs }) {
+function IngredientsFormList ({ field, list, setInputs }:IngredientsFormProps) {
   const [showAdd, setShowAdd] = useState(false);
 
   useEffect(() => {

@@ -1,7 +1,7 @@
 import React from 'react';
-import { SuccessErrorProps } from '../../types';
+import { ErrorProps } from '../../types';
 
-function Error ({ className, text }:SuccessErrorProps) {
+function Error ({ className, text }:ErrorProps) {
   return (
     <div className={`Error ${className}`}>
       <div className="alert alert-error text-center">

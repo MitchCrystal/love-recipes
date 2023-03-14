@@ -1,3 +1,5 @@
+import { RecipeDataLabel } from "../../../types";
+
 export const recipeDefaultData = {
   title: {
     id: 'title',
@@ -36,7 +38,7 @@ export const recipeDefaultData = {
   },
 };
 
-export const getRecipeDataLabel = (dataField) => {
+export const getRecipeDataLabel = (dataField: RecipeDataLabel) => {
   return (
     dataField.label || dataField.id[0].toUpperCase() + dataField.id.slice(1)
   );

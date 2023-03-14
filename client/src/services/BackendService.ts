@@ -1,4 +1,4 @@
-import { Recipe } from "../../types";
+import { RecipeType } from "../../types";
 
 const domain = import.meta.env.VITE_DOMAIN;
 
@@ -20,7 +20,7 @@ const getUrlData = async (url: string) => {
   }
 };
 
-const addRecipe = async (newRecipe: Recipe) => {
+const addRecipe = async (newRecipe: RecipeType) => {
   try {
     const response = await fetch(`${domain}/recipe/add`, {
       method: 'POST',
