@@ -21,7 +21,7 @@ const inputControl = {
   totalTime: '',
   servings: '',
   ingredients: [''],
-  instructions: [''],
+  instructions: [{ title: '', instructions:['']}],
 };
 
 const fieldOrder = [
