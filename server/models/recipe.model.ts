@@ -1,8 +1,8 @@
 import {prisma} from './db-connect';
 
-const findRecipe = async (options:any) => {
+const findRecipe = async (url:string) => {
   const response = await prisma.recipe.findFirst({
-    where: options,
+    where: {url: url},
   });
 
   return response;
