@@ -1,6 +1,8 @@
+import { RecipeType } from "../../types";
+
 const domain = import.meta.env.VITE_DOMAIN;
 
-const getUrlData = async (url) => {
+const getUrlData = async (url: string) => {
   try {
     const response = await fetch(`${domain}/scrape`, {
       method: 'POST',
@@ -18,7 +20,7 @@ const getUrlData = async (url) => {
   }
 };
 
-const addRecipe = async (newRecipe) => {
+const addRecipe = async (newRecipe: RecipeType) => {
   try {
     const response = await fetch(`${domain}/recipe/add`, {
       method: 'POST',
@@ -49,7 +51,7 @@ const fetchRecipes = async () => {
   }
 };
 
-const fetchRecipe = async (url) => {
+const fetchRecipe = async (url: string) => {
   try {
     const response = await fetch(`${domain}${url}`, {
       method: 'GET',
@@ -66,7 +68,7 @@ const fetchRecipe = async (url) => {
   }
 };
 
-const deleteRecipe = async (id) => {
+const deleteRecipe = async (id: string) => {
   console.log("before fetching in deleteRecipe: " + id);
   try {
     const response = await fetch(`${domain}/recipes/${id}`, {

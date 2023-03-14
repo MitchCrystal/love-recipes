@@ -1,11 +1,12 @@
 import React, { useEffect, useState } from 'react';
 import Collapse from '../utils/Collapse';
 import { svgPlus, svgClose } from '../assets/svg';
+import { BlankRecipeType, IngredientInstructionProps, NewInstructionType } from '../../types';
 
 const newLineChar = '\n';
-const newInstruction = { title: '', instructions: [] };
+const newInstruction: NewInstructionType = { title: '', instructions: [] };
 
-function InstructionsFormList ({ field, list, setInputs }) {
+function InstructionsFormList ({ formField, list, setInputs }:IngredientInstructionProps) {
   const [showAdd, setShowAdd] = useState(false);
 
   useEffect(() => {
@@ -17,17 +18,17 @@ function InstructionsFormList ({ field, list, setInputs }) {
   });
 
   // Update state instructions array if one instruction is changed
-  const handleChange = (e, index, fieldType) => {
+  const handleChange = (e: React.ChangeEvent<HTMLInputElement>|React.ChangeEvent<HTMLTextAreaElement>, index: number, fieldType: string) => {
     setInputs((prev) => {
       const newState = { ...prev };
-      let newValue = e.target.value;
+      let newValue: string | string[] = e.target.value;
 
       if (fieldType === 'instructions') {
         newValue = newValue.split(newLineChar);
       }
 
-      newState[field.id][index] = {
-        ...newState[field.id][index],
+      (newState[formField.id as keyof BlankRecipeType] as any[])[index] = {
+        ...(newState[formField.id as keyof BlankRecipeType] as any[])[index],
         [fieldType]: newValue,
       };
 
@@ -38,20 +39,20 @@ function InstructionsFormList ({ field, list, setInputs }) {
   const addInstruction = () => {
     setInputs((prev) => {
       const newState = { ...prev };
-      newState[field.id].push(newInstruction);
+      (newState[formField.id as keyof BlankRecipeType] as any[]).push(newInstruction);
       return newState;
     });
   };
 
-  const deleteInstruction = (index) => {
+  const deleteInstruction = (index: number) => {
     setInputs((prev) => {
       const newState = { ...prev };
-      newState[field.id].splice(index, 1);
+      (newState[formField.id as keyof BlankRecipeType] as string[]).splice(index, 1);
       return newState;
     });
   };
 
-  const renderInstruction = (value, count) => {
+  const renderInstruction = (value: NewInstructionType, count: number) => {
     const { title, instructions } = value || newInstruction;
 
     return (
@@ -74,8 +75,8 @@ function InstructionsFormList ({ field, list, setInputs }) {
         )}
 
         <div
-          className={`_form__field _form__field--${field.id}${
-            field.customClass || ''
+          className={`_form__field _form__field--${formField.id}${
+            formField.customClass || ''
           }`}
         >
           <div className="form-control">
@@ -85,8 +86,8 @@ function InstructionsFormList ({ field, list, setInputs }) {
             <input
               className="input input-bordered w-full"
               type="text"
-              placeholder={field.placeholder}
-              name={`${field.id}-${count}`}
+              placeholder={formField.placeholder}
+              name={`${formField.id}-${count}`}
               value={title}
               onChange={(e) => handleChange(e, count, 'title')}
             />
@@ -98,7 +99,7 @@ function InstructionsFormList ({ field, list, setInputs }) {
             </label>
             <textarea
               className="textarea textarea-bordered h-24"
-              name={`${field.id}-${count}`}
+              name={`${formField.id}-${count}`}
               value={instructions ? instructions.join(newLineChar) : ''}
               onChange={(e) => handleChange(e, count, 'instructions')}
             ></textarea>
@@ -110,8 +111,8 @@ function InstructionsFormList ({ field, list, setInputs }) {
 
   return (
     <div
-      className={`_form__field _form__field--${field.id}${
-        field.customClass || ''
+      className={`_form__field _form__field--${formField.id}${
+        formField.customClass || ''
       }`}
     >
       <Collapse

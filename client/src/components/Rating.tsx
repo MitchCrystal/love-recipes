@@ -1,6 +1,7 @@
 import React from 'react';
+import { RatingProp } from '../../types';
 
-function Rating ({ rating }) {
+function Rating ({ rating }:RatingProp) {
   return (
     <>
       {rating > 1 && (

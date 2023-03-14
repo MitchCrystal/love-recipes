@@ -3,8 +3,9 @@ import { Link } from 'react-router-dom';
 
 import Rating from './Rating';
 import { svgClock, svgEdit, svgClose } from '../assets/svg';
+import { CardPropsType } from '../../types';
 
-function Card ({ data , onDelete}) {
+function Card ({ data , onDelete}:CardPropsType) {
   return (
     <div className="card card-normal card--hover w-96 bg-base-100 shadow-md">
       <div className="card__hovers">
@@ -15,7 +16,7 @@ function Card ({ data , onDelete}) {
           Edit
           {svgEdit}
         </Link>
-        
+
         <button
           className="btn btn-icon btn-sm btn-dele"
           onClick= {() => onDelete(data.id)}

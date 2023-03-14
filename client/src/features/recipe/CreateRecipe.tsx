@@ -11,6 +11,7 @@ import Success from '../../utils/Success';
 import Error from '../../utils/Error';
 
 import { recipeDefaultData } from './config';
+import { CreateRecipeDestructuredProps, FieldOrderDataType, recipeDefaultDataType } from '../../../types';
 
 const inputControl = {
   title: '',
@@ -19,8 +20,8 @@ const inputControl = {
   cookTime: '',
   totalTime: '',
   servings: '',
-  ingredients: [],
-  instructions: [],
+  ingredients: [''],
+  instructions: [{ title: '', instructions:['']}],
 };
 
 const fieldOrder = [
@@ -32,10 +33,10 @@ const fieldOrder = [
   'servings',
 ];
 
-function CreateRecipe ({ recipe, title, textContent }) {
+function CreateRecipe ({ recipe, title, textContent }:CreateRecipeDestructuredProps) {
   const [inputs, setInputs] = useState(inputControl);
   const [btnloading, setBtnLoading] = useState(false);
-  const [error, setError] = useState(false);
+  const [error, setError] = useState('');
   const location = useLocation();
   const navigate = useNavigate();
 
@@ -45,7 +46,7 @@ function CreateRecipe ({ recipe, title, textContent }) {
     }
   }, [recipe]);
 
-  const handleSubmit = (e) => {
+  const handleSubmit = (e: any /*NEED TO CHANGE THIS*/ ): void => {
     e.preventDefault();
 
     setBtnLoading(true);
@@ -95,20 +96,20 @@ function CreateRecipe ({ recipe, title, textContent }) {
                   {fieldOrder.map((field, i) => (
                     <FormInput
                       key={i}
-                      field={recipeDefaultData[field]}
-                      value={inputs[field]}
+                      formField={recipeDefaultData[field as keyof recipeDefaultDataType]}
+                      value={inputs[field as keyof FieldOrderDataType]}
                       setInputs={setInputs}
                     />
                   ))}
 
                   <IngredientsFormList
-                    field={recipeDefaultData.ingredients}
+                    formField={recipeDefaultData.ingredients}
                     list={inputs.ingredients}
                     setInputs={setInputs}
                   />
 
                   <InstructionsFormList
-                    field={recipeDefaultData.instructions}
+                    formField={recipeDefaultData.instructions}
                     list={inputs.instructions}
                     setInputs={setInputs}
                   />
