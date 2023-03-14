@@ -57,7 +57,6 @@ const fetchRecipe = async (url) => {
       headers: {
         'Content-Type': 'application/json',
       },
-      //body: JSON.stringify({ url }),
     });
     const result = await response.json();
     return result;

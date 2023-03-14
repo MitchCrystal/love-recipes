@@ -120,7 +120,6 @@ const allRecipes = async (req: Request, res: Response) => {
     res.status(200);
     res.send(response);
   } catch (error) {
-    console.log(`allRecipes error:\n${error}`);
     res.status(500);
   }
 };
