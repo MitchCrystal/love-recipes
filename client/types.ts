@@ -3,15 +3,18 @@ export type CollapseProps = {
   content: JSX.Element;
 }
 
-
-
-export interface BlankRecipeType {
-  title: string;
+export interface FieldOrderDataType {
+ title: string;
   description: string;
   prepTime: string;
   cookTime: string;
   totalTime: string;
   servings: string;
+};
+
+
+
+export interface BlankRecipeType extends FieldOrderDataType {
   ingredients: any[]; //must correct this
   instructions: any[];  //must correct this
 
@@ -151,3 +154,11 @@ export interface InstructionsFormProps {
 export interface RatingProp {
   rating: number
 }
+
+export interface DefaultDataObject {
+  id: string;
+  placeholder?: string;
+  customClass?: string;
+  label?: string;
+}
+
