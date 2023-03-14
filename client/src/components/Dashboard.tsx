@@ -1,6 +1,7 @@
 import React from 'react';
+import { PropsWithChildren } from 'react'
 
-function Dashboard ({ children }) {
+function Dashboard ({ children }:PropsWithChildren) {
   return <div className="Dashboard">{children}</div>;
 }
 

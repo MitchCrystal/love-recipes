@@ -1,5 +1,6 @@
 import React from 'react';
 import { useState } from 'react';
+import { DownloadRecipeFormProps } from '../../../types';
 
 import BackendService from '../../services/BackendService';
 
@@ -11,12 +12,12 @@ const inputControl = {
   url: '',
 };
 
-function DownloadRecipeForm ({ setRecipe }) {
+function DownloadRecipeForm ({ setRecipe }:DownloadRecipeFormProps) {
   const [inputs, setInputs] = useState(inputControl);
   const [btnloading, setBtnLoading] = useState(false);
   const [error, setError] = useState('');
 
-  const handleSubmit = (e) => {
+  const handleSubmit = (e: React.SyntheticEvent) => {
     e.preventDefault();
 
     setError('');
@@ -25,7 +26,7 @@ function DownloadRecipeForm ({ setRecipe }) {
     const { url } = inputs;
     const fullUrl = domain + url;
     BackendService.getUrlData(fullUrl)
-      .then((response) => {
+      .then((response: any) => {
         response.data.extUrl = fullUrl;
         if (response.data) {
           setRecipe(response.data);
@@ -36,7 +37,7 @@ function DownloadRecipeForm ({ setRecipe }) {
       })
       .catch((error) => {
         console.log('Error saving recipe:\n', error);
-        setError(response.error);
+        setError(error);
         setBtnLoading(false);
       });
   };

@@ -1,5 +1,5 @@
 import React from 'react';
-import CollapseProps from '../../types'
+import { CollapseProps } from '../../types'
 
 
 function Collapse ({ title, content }:CollapseProps) {

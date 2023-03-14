@@ -29,7 +29,7 @@ function App() {
         />
         <Route
           path="/create-recipe"
-          element={<Create state={initialState} />}
+          element={<Create createRecipeState={initialState} />}
         />
         <Route
           path="/recipes/:url"
