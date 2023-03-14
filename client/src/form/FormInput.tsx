@@ -1,27 +1,27 @@
 import React from 'react';
-import { FormInputProps } from '../../types';
+import { MainFormInputProps } from '../../types';
 import { getRecipeDataLabel } from '../features/recipe/config';
 
-function FormInput ({ field, value, setInputs }:FormInputProps) {
+function FormInput ({ formField, value, setInputs }:MainFormInputProps) {
   return (
     <div
-      className={`_form__field _form__field--${field.id}${
-        field.customClass || ''
+      className={`_form__field _form__field--${formField.id}${
+        formField.customClass || ''
       }`}
     >
       <label className="label">
-        <span className="label-text">{getRecipeDataLabel(field)}</span>
+        <span className="label-text">{getRecipeDataLabel(formField)}</span>
       </label>
       <input
         type="text"
-        placeholder={field.placeholder}
+        placeholder={formField.placeholder}
         className="input input-bordered w-full"
-        name={field.id}
+        name={formField.id}
         value={value}
         onChange={(e) =>
           setInputs((prev) => ({
             ...prev,
-            [field.id]: e.target.value,
+            [formField.id]: e.target.value,
           }))
         }
         required

@@ -60,10 +60,16 @@ export type RecipeDataLabel = {
 
 export type recipeDefaultDataType = {
   title: {
-    id: string; placeholder: string;
+    id: string;
+    label: string;
+    placeholder: string;
+    customClass: string;
   };
   description: {
     id: string;
+    label: string;
+    placeholder: string;
+    customClass: string;
   };
   prepTime: {
     id: string;
@@ -72,26 +78,34 @@ export type recipeDefaultDataType = {
     customClass: string;
   };
   cookTime: {
-    id: string;
+   id: string;
     label: string;
+    placeholder: string;
     customClass: string;
   };
   totalTime: {
     id: string;
     label: string;
+    placeholder: string;
     customClass: string;
   },
   servings: {
     id: string;
+    label: string;
     placeholder: string;
     customClass: string;
   },
   ingredients: {
     id: string;
+    label: string;
     placeholder: string;
+    customClass: string;
   },
   instructions: {
-    id: string;
+   id: string;
+    label: string;
+    placeholder: string;
+    customClass: string;
   },
 };
 
@@ -114,16 +128,13 @@ export interface DownloadRecipeFormProps {
   setRecipe: React.Dispatch<React.SetStateAction<null>>
 }
 
-export interface FormInputProps {
-  field: string
-}
-
-export interface IngredientsFormProps {
-  field: {
+export interface GenreralFormInputProps {
+  formField: {
     id: string;
+    label: string;
     placeholder: string;
-  }
-  list: string[];
+    customClass: string;
+  };
   setInputs: React.Dispatch<React.SetStateAction<{
     title: string;
     description: string;
@@ -131,24 +142,17 @@ export interface IngredientsFormProps {
     cookTime: string;
     totalTime: string;
     servings: string;
-    ingredients: string[];
-    instructions: string[];
+    ingredients: any[];
+    instructions: any[];
 }>>
 }
 
-export interface InstructionsFormProps {
-  field: {id: string}
-  list: string[];
-  setInputs: React.Dispatch<React.SetStateAction<{
-    title: string;
-    description: string;
-    prepTime: string;
-    cookTime: string;
-    totalTime: string;
-    servings: string;
-    ingredients: string[];
-    instructions: string[];
-}>>
+export interface MainFormInputProps extends GenreralFormInputProps {
+  value: string;
+}
+
+export interface IngredientInstructionProps extends GenreralFormInputProps {
+  list: any[];
 }
 
 export interface RatingProp {
@@ -162,3 +166,12 @@ export interface DefaultDataObject {
   label?: string;
 }
 
+export interface NewInstructionType {
+  title: string;
+  instructions: any[]
+}
+
+export interface CardPropsType {
+  data: SavedRecipeType;
+  onDelete: (id: string) => void
+}

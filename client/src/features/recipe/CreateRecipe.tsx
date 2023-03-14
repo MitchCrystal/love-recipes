@@ -11,7 +11,7 @@ import Success from '../../utils/Success';
 import Error from '../../utils/Error';
 
 import { recipeDefaultData } from './config';
-import { BlankRecipeType, CreateRecipeDestructuredProps, FieldOrderDataType } from '../../../types';
+import { CreateRecipeDestructuredProps, FieldOrderDataType, recipeDefaultDataType } from '../../../types';
 
 const inputControl = {
   title: '',
@@ -93,23 +93,23 @@ function CreateRecipe ({ recipe, title, textContent }:CreateRecipeDestructuredPr
                 onSubmit={handleSubmit}
               >
                 <div className="_form__inner form-control w-full">
-                  {fieldOrder.map((field: any, i) => (
+                  {fieldOrder.map((field, i) => (
                     <FormInput
                       key={i}
-                      field={recipeDefaultData[field as keyof FieldOrderDataType]}
-                      value={inputs[field as keyof BlankRecipeType]}
+                      formField={recipeDefaultData[field as keyof recipeDefaultDataType]}
+                      value={inputs[field as keyof FieldOrderDataType]}
                       setInputs={setInputs}
                     />
                   ))}
 
                   <IngredientsFormList
-                    field={recipeDefaultData.ingredients}
+                    formField={recipeDefaultData.ingredients}
                     list={inputs.ingredients}
                     setInputs={setInputs}
                   />
 
                   <InstructionsFormList
-                    field={recipeDefaultData.instructions}
+                    formField={recipeDefaultData.instructions}
                     list={inputs.instructions}
                     setInputs={setInputs}
                   />

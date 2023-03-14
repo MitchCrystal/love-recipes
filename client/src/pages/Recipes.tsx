@@ -16,7 +16,7 @@ function Recipes () {
     });
   }, []);
 
-  const deleteRecipe = (id: string)  =>{
+  const deleteRecipe = (id: string):void  => {
      BackendService.deleteRecipe(id).then((response) => {
        setAllRecipes(allRecipes.filter((recipe: SavedRecipeType) => recipe.id !== id));
     });

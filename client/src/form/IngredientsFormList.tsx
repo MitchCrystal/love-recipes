@@ -1,11 +1,11 @@
 import React, { useEffect, useState } from 'react';
 import Collapse from '../utils/Collapse';
 import { svgPlus, svgClose } from '../assets/svg';
-import { IngredientsFormProps } from '../../types';
+import { BlankRecipeType, IngredientInstructionProps } from '../../types';
 
 const newIngredient = '';
 
-function IngredientsFormList ({ field, list, setInputs }:IngredientsFormProps) {
+function IngredientsFormList ({ formField, list, setInputs }:IngredientInstructionProps) {
   const [showAdd, setShowAdd] = useState(false);
 
   useEffect(() => {
@@ -13,10 +13,10 @@ function IngredientsFormList ({ field, list, setInputs }:IngredientsFormProps) {
   });
 
   // Update state ingredients array if one ingredient is changed
-  const handleChange = (e: Event, index: number) => {
+  const handleChange = (e: React.ChangeEvent<HTMLInputElement>, index: number) => {
     setInputs((prev) => {
       const newState = { ...prev };
-      newState[field.id][index] = e.target.value;
+      (newState[formField.id as keyof BlankRecipeType] as any[])[index] = e.target.value;
       return newState;
     });
   };
@@ -24,7 +24,7 @@ function IngredientsFormList ({ field, list, setInputs }:IngredientsFormProps) {
   const addIngredient = () => {
     setInputs((prev) => {
       const newState = { ...prev };
-      newState[field.id].push(newIngredient);
+      (newState[formField.id as keyof BlankRecipeType] as string[]).push(newIngredient);
       return newState;
     });
   };
@@ -32,12 +32,12 @@ function IngredientsFormList ({ field, list, setInputs }:IngredientsFormProps) {
   const deleteIngredient = (index:number) => {
     setInputs((prev) => {
       const newState = { ...prev };
-      newState[field.id].splice(index, 1);
+      (newState[formField.id as keyof BlankRecipeType] as string[]).splice(index, 1);
       return newState;
     });
   };
 
-  const renderIngredient = (value, count) => {
+  const renderIngredient = (value: string, count:number) => {
     return (
       <li key={count}>
         {list.length > 1 ? (
@@ -56,9 +56,9 @@ function IngredientsFormList ({ field, list, setInputs }:IngredientsFormProps) {
 
         <input
           type="text"
-          placeholder={field.placeholder}
+          placeholder={formField.placeholder}
           className="input input-bordered w-full"
-          name={`${field.id}-${count}`}
+          name={`${formField.id}-${count}`}
           value={value}
           onChange={(e) => handleChange(e, count)}
           required
@@ -70,8 +70,8 @@ function IngredientsFormList ({ field, list, setInputs }:IngredientsFormProps) {
   return (
     <>
       <div
-        className={`_form__field _form__field--${field.id}${
-          field.customClass || ''
+        className={`_form__field _form__field--${formField.id}${
+          formField.customClass || ''
         }`}
       >
         <Collapse
