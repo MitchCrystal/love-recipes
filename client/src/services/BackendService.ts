@@ -51,7 +51,7 @@ const fetchRecipes = async () => {
   }
 };
 
-const fetchRecipe = async (url: string) => {
+const fetchRecipe = async (url:string) => {
   try {
     const response = await fetch(`${domain}${url}`, {
       method: 'GET',
