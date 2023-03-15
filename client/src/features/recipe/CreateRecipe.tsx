@@ -47,9 +47,13 @@ function CreateRecipe ({ recipe, title, textContent }:CreateRecipeDestructuredPr
   const location = useLocation();
   const navigate = useNavigate();
 
+  console.log('inputs', inputs)
+  console.log('recipe', recipe)
+
   useEffect(() => {
     if (recipe) {
       setInputs(recipe);
+      console.log('recipe was deemed present')
     }
   }, [recipe]);
 

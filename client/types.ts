@@ -48,63 +48,18 @@ export type RecipeDataLabel = {
 }
 
 export type recipeDefaultDataType = {
-  title: {
-    id: string;
-    label: string;
-    placeholder: string;
-    customClass: string;
-  };
-  description: {
-    id: string;
-    label: string;
-    placeholder: string;
-    customClass: string;
-  };
-  prepTime: {
-    id: string;
-    label: string;
-    placeholder: string;
-    customClass: string;
-  };
-  cookTime: {
-   id: string;
-    label: string;
-    placeholder: string;
-    customClass: string;
-  };
-  totalTime: {
-    id: string;
-    label: string;
-    placeholder: string;
-    customClass: string;
-  },
-  servings: {
-    id: string;
-    label: string;
-    placeholder: string;
-    customClass: string;
-  },
-  ingredients: {
-    id: string;
-    label: string;
-    placeholder: string;
-    customClass: string;
-  },
-  instructions: {
-   id: string;
-    label: string;
-    placeholder: string;
-    customClass: string;
-  },
+  title: RecipeDataLabel;
+  description: RecipeDataLabel;
+  prepTime: RecipeDataLabel;
+  cookTime: RecipeDataLabel;
+  totalTime: RecipeDataLabel,
+  servings: RecipeDataLabel,
+  ingredients: RecipeDataLabel,
+  instructions: RecipeDataLabel,
 };
 
 export interface GeneralFormInputProps {
-  formField: {
-    id: string;
-    label: string;
-    placeholder: string;
-    customClass: string;
-  };
+  formField: RecipeDataLabel;
   setInputs: React.Dispatch<React.SetStateAction<{
     title: string;
     description: string;
@@ -113,10 +68,7 @@ export interface GeneralFormInputProps {
     totalTime: string;
     servings: string;
     ingredients: string[];
-    instructions: {
-    title: string;
-    instructions: string[];
-  }[]
+    instructions: NewInstructionType[]
 }>>
 }
 
@@ -124,15 +76,7 @@ export interface MainFormInputProps extends GeneralFormInputProps {
   value: string;
 }
 
-export interface DefaultDataObject {
-  id: string;
-  placeholder?: string;
-  customClass?: string;
-  label?: string;
-}
-
 export interface NewInstructionType {
    title: string;
     instructions: string[];
-  
 }
