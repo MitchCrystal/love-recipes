@@ -1,9 +1,6 @@
 import React from 'react';
 import { useState } from 'react';
-import { DownloadRecipeFormProps } from '../../../types';
-
 import BackendService from '../../services/BackendService';
-
 import Error from '../../utils/Error';
 
 const domain = 'https://www.simplyrecipes.com/';
@@ -11,6 +8,10 @@ const domain = 'https://www.simplyrecipes.com/';
 const inputControl = {
   url: '',
 };
+
+interface DownloadRecipeFormProps {
+  setRecipe: React.Dispatch<React.SetStateAction<null>>
+}
 
 function DownloadRecipeForm ({ setRecipe }:DownloadRecipeFormProps) {
   const [inputs, setInputs] = useState(inputControl);

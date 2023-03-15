@@ -1,10 +1,5 @@
-export type CollapseProps = {
-  title: string;
-  content: JSX.Element;
-}
-
 export interface FieldOrderDataType {
- title: string;
+  title: string;
   description: string;
   prepTime: string;
   cookTime: string;
@@ -12,12 +7,12 @@ export interface FieldOrderDataType {
   servings: string;
 };
 
-
-
 export interface BlankRecipeType extends FieldOrderDataType {
-  ingredients: any[]; //must correct this
-  instructions: any[];  //must correct this
-
+  ingredients: string[];
+  instructions: {
+    title: string;
+    instructions: string[];
+  }[]
 }
 
 export interface RecipeType extends BlankRecipeType {
@@ -29,9 +24,8 @@ export interface SavedRecipeType extends RecipeType {
   id: string;
   url: string;
   original: boolean;
-  owner: any;  //NEED TO UPDATE THIS
-  createdAt: any; //NEED TO UPDATE THIS
-  updatedAt: any;  //NEED TO UPDATE THIS
+  createdAt: string;
+  updatedAt: string;
   authorId: string;
 }
 
@@ -40,15 +34,10 @@ export type User = {
   name: string;
   lastName: string;
   token: string;
-  Recipe?: any[];
 }
 
 export interface SuccessProps {
   text: string;
-}
-
-export interface ErrorProps extends SuccessProps {
-  className: any; //NEED TO UPDATE THIS
 }
 
 export type RecipeDataLabel = {
@@ -59,82 +48,18 @@ export type RecipeDataLabel = {
 }
 
 export type recipeDefaultDataType = {
-  title: {
-    id: string;
-    label: string;
-    placeholder: string;
-    customClass: string;
-  };
-  description: {
-    id: string;
-    label: string;
-    placeholder: string;
-    customClass: string;
-  };
-  prepTime: {
-    id: string;
-    label: string;
-    placeholder: string;
-    customClass: string;
-  };
-  cookTime: {
-   id: string;
-    label: string;
-    placeholder: string;
-    customClass: string;
-  };
-  totalTime: {
-    id: string;
-    label: string;
-    placeholder: string;
-    customClass: string;
-  },
-  servings: {
-    id: string;
-    label: string;
-    placeholder: string;
-    customClass: string;
-  },
-  ingredients: {
-    id: string;
-    label: string;
-    placeholder: string;
-    customClass: string;
-  },
-  instructions: {
-   id: string;
-    label: string;
-    placeholder: string;
-    customClass: string;
-  },
+  title: RecipeDataLabel;
+  description: RecipeDataLabel;
+  prepTime: RecipeDataLabel;
+  cookTime: RecipeDataLabel;
+  totalTime: RecipeDataLabel,
+  servings: RecipeDataLabel,
+  ingredients: RecipeDataLabel,
+  instructions: RecipeDataLabel,
 };
 
-export interface CreateRecipeProps {
-  createRecipeState: {
-    recipe: BlankRecipeType | null;
-    title: string;
-    textContent?: string;
-  }
-}
-
-export interface CreateRecipeDestructuredProps {
-    recipe: BlankRecipeType | null;
-    title: string;
-    textContent?: string;
-
-}
-
-export interface DownloadRecipeFormProps {
-  setRecipe: React.Dispatch<React.SetStateAction<null>>
-}
-
-export interface GenreralFormInputProps {
-  formField: {
-    id: string;
-    label: string;
-    placeholder: string;
-    customClass: string;
-  };
+export interface GeneralFormInputProps {
+  formField: RecipeDataLabel;
   setInputs: React.Dispatch<React.SetStateAction<{
     title: string;
     description: string;
@@ -142,36 +67,16 @@ export interface GenreralFormInputProps {
     cookTime: string;
     totalTime: string;
     servings: string;
-    ingredients: any[];
-    instructions: any[];
+    ingredients: string[];
+    instructions: NewInstructionType[]
 }>>
 }
 
-export interface MainFormInputProps extends GenreralFormInputProps {
+export interface MainFormInputProps extends GeneralFormInputProps {
   value: string;
 }
 
-export interface IngredientInstructionProps extends GenreralFormInputProps {
-  list: any[];
-}
-
-export interface RatingProp {
-  rating: number
-}
-
-export interface DefaultDataObject {
-  id: string;
-  placeholder?: string;
-  customClass?: string;
-  label?: string;
-}
-
 export interface NewInstructionType {
-  title: string;
-  instructions: any[]
-}
-
-export interface CardPropsType {
-  data: SavedRecipeType;
-  onDelete: (id: string) => void
+   title: string;
+    instructions: string[];
 }

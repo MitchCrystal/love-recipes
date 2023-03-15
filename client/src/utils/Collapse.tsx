@@ -1,5 +1,9 @@
 import React from 'react';
-import { CollapseProps } from '../../types'
+
+type CollapseProps = {
+  title: string;
+  content: JSX.Element;
+}
 
 
 function Collapse ({ title, content }:CollapseProps) {

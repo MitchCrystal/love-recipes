@@ -1,12 +1,19 @@
 import React, { useEffect, useState } from 'react';
 import Collapse from '../utils/Collapse';
 import { svgPlus, svgClose } from '../assets/svg';
-import { BlankRecipeType, IngredientInstructionProps, NewInstructionType } from '../../types';
+import { BlankRecipeType, GeneralFormInputProps, NewInstructionType } from '../../types';
+
+interface InstructionProps extends GeneralFormInputProps {
+  list: {
+    title: string;
+    instructions: string[];
+  }[];
+}
 
 const newLineChar = '\n';
 const newInstruction: NewInstructionType = { title: '', instructions: [] };
 
-function InstructionsFormList ({ formField, list, setInputs }:IngredientInstructionProps) {
+function InstructionsFormList ({ formField, list, setInputs }:InstructionProps) {
   const [showAdd, setShowAdd] = useState(false);
 
   useEffect(() => {

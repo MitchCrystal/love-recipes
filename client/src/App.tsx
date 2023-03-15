@@ -3,14 +3,10 @@ import { Route, Routes } from 'react-router-dom';
 
 import { Create, Home, Import, Recipes, Recipe, NotFound } from './pages';
 import Navbar from './components/Navbar';
+import { useState } from 'react';
 
 function App() {
 
-  const initialState = {
-  recipe: null,
-  title: 'Create Recipe',
-  textContent: 'Fill in the form to create your own recipe.',
-}
   return (
     <div className="App">
       <Navbar />
@@ -29,7 +25,7 @@ function App() {
         />
         <Route
           path="/create-recipe"
-          element={<Create createRecipeState={initialState} />}
+          element={<Create />}
         />
         <Route
           path="/recipes/:url"

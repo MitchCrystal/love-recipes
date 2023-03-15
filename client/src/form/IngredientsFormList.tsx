@@ -1,13 +1,17 @@
 import React, { useEffect, useState } from 'react';
 import Collapse from '../utils/Collapse';
 import { svgPlus, svgClose } from '../assets/svg';
-import { BlankRecipeType, IngredientInstructionProps } from '../../types';
+import { BlankRecipeType, GeneralFormInputProps } from '../../types';
+
+interface IngredientProps extends GeneralFormInputProps {
+  list: string[];
+}
 
 const newIngredient = '';
 
-function IngredientsFormList ({ formField, list, setInputs }:IngredientInstructionProps) {
+function IngredientsFormList ({ formField, list, setInputs }:IngredientProps) {
   const [showAdd, setShowAdd] = useState(false);
-
+  
   useEffect(() => {
     setShowAdd(list.length > 0 && list[list.length - 1] !== '');
   });

@@ -124,7 +124,7 @@ function Recipe () {
                                 {getRecipeDataLabel(recipeDefaultData[fieldId as keyof recipeDefaultDataType])}
                               </div>
                               <div className="labelText__text">
-                                {recipe[fieldId as keyof SavedRecipeType]}
+                                {recipe[fieldId as keyof SavedRecipeType] as string}
                               </div>
                             </div>
                           </div>
