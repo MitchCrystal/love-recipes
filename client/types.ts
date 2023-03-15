@@ -1,5 +1,3 @@
-
-
 export interface FieldOrderDataType {
   title: string;
   description: string;
@@ -8,8 +6,6 @@ export interface FieldOrderDataType {
   totalTime: string;
   servings: string;
 };
-
-
 
 export interface BlankRecipeType extends FieldOrderDataType {
   ingredients: string[];
@@ -38,14 +34,11 @@ export type User = {
   name: string;
   lastName: string;
   token: string;
-  Recipe?: any[];
 }
 
 export interface SuccessProps {
   text: string;
 }
-
-
 
 export type RecipeDataLabel = {
   id: string;
@@ -119,20 +112,17 @@ export interface GeneralFormInputProps {
     cookTime: string;
     totalTime: string;
     servings: string;
-    ingredients: any[];
-    instructions: any[];
+    ingredients: string[];
+    instructions: {
+    title: string;
+    instructions: string[];
+  }[]
 }>>
 }
 
 export interface MainFormInputProps extends GeneralFormInputProps {
   value: string;
 }
-
-export interface IngredientInstructionProps extends GeneralFormInputProps {
-  list: any[];
-}
-
-
 
 export interface DefaultDataObject {
   id: string;
@@ -142,7 +132,7 @@ export interface DefaultDataObject {
 }
 
 export interface NewInstructionType {
-  title: string;
-  instructions: any[]
+   title: string;
+    instructions: string[];
+  
 }
-
