@@ -41,19 +41,15 @@ const fieldOrder = [
 ];
 
 function CreateRecipe ({ recipe, title, textContent }:CreateRecipeDestructuredProps) {
-  const [inputs, setInputs] = useState(inputControl);
+  const [inputs, setInputs] = useState(Object.create(inputControl));
   const [btnloading, setBtnLoading] = useState(false);
   const [error, setError] = useState('');
   const location = useLocation();
   const navigate = useNavigate();
 
-  console.log('inputs', inputs)
-  console.log('recipe', recipe)
-
   useEffect(() => {
     if (recipe) {
       setInputs(recipe);
-      console.log('recipe was deemed present')
     }
   }, [recipe]);
 
