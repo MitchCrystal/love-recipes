@@ -31,13 +31,9 @@ function Create ({createRecipeState}:CreateRecipeProps) {
 
   const location = useLocation();
 
-  console.log('this state', thisState)
-
   // state can be from location state or passed as prop
   useEffect(() => {
     const locationState = location.state;
-
-    console.log('thisstaterecipe',thisState.recipe)
     setThisState({
       recipe: (locationState && locationState.recipe) || thisState.recipe,
       title: (locationState && locationState.title) || thisState.title,

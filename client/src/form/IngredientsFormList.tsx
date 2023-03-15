@@ -11,7 +11,7 @@ const newIngredient = '';
 
 function IngredientsFormList ({ formField, list, setInputs }:IngredientProps) {
   const [showAdd, setShowAdd] = useState(false);
-  
+
   useEffect(() => {
     setShowAdd(list.length > 0 && list[list.length - 1] !== '');
   });
@@ -20,7 +20,7 @@ function IngredientsFormList ({ formField, list, setInputs }:IngredientProps) {
   const handleChange = (e: React.ChangeEvent<HTMLInputElement>, index: number) => {
     setInputs((prev) => {
       const newState = { ...prev };
-      (newState[formField.id as keyof BlankRecipeType] as any[])[index] = e.target.value;
+      (newState[formField.id as keyof BlankRecipeType] as string[])[index] = e.target.value;
       return newState;
     });
   };

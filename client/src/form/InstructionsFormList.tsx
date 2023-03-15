@@ -34,8 +34,8 @@ function InstructionsFormList ({ formField, list, setInputs }:InstructionProps) 
         newValue = newValue.split(newLineChar);
       }
 
-      (newState[formField.id as keyof BlankRecipeType] as any[])[index] = {
-        ...(newState[formField.id as keyof BlankRecipeType] as any[])[index],
+      (newState[formField.id as keyof BlankRecipeType] as NewInstructionType[])[index] = {
+        ...(newState[formField.id as keyof BlankRecipeType] as NewInstructionType[])[index],
         [fieldType]: newValue,
       };
 
@@ -46,7 +46,7 @@ function InstructionsFormList ({ formField, list, setInputs }:InstructionProps) 
   const addInstruction = () => {
     setInputs((prev) => {
       const newState = { ...prev };
-      (newState[formField.id as keyof BlankRecipeType] as any[]).push(newInstruction);
+      (newState[formField.id as keyof BlankRecipeType] as NewInstructionType[]).push(newInstruction);
       return newState;
     });
   };

@@ -1,5 +1,6 @@
 import React from 'react';
 import { useState } from 'react';
+import { ScrapedRecipeData, RecipeType } from '../../../types';
 import BackendService from '../../services/BackendService';
 import Error from '../../utils/Error';
 
@@ -10,7 +11,7 @@ const inputControl = {
 };
 
 interface DownloadRecipeFormProps {
-  setRecipe: React.Dispatch<React.SetStateAction<null>>
+  setRecipe: React.Dispatch<React.SetStateAction<RecipeType>>
 }
 
 function DownloadRecipeForm ({ setRecipe }:DownloadRecipeFormProps) {
@@ -27,12 +28,12 @@ function DownloadRecipeForm ({ setRecipe }:DownloadRecipeFormProps) {
     const { url } = inputs;
     const fullUrl = domain + url;
     BackendService.getUrlData(fullUrl)
-      .then((response: any) => {
+      .then((response: ScrapedRecipeData) => {
         response.data.extUrl = fullUrl;
         if (response.data) {
           setRecipe(response.data);
         } else {
-          setError(response.error);
+          setError(response.error as string);
           setBtnLoading(false);
         }
       })
