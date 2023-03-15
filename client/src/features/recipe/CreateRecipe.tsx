@@ -46,7 +46,7 @@ function CreateRecipe ({ recipe, title, textContent }:CreateRecipeDestructuredPr
     }
   }, [recipe]);
 
-  const handleSubmit = (e: any /*NEED TO CHANGE THIS*/ ): void => {
+  const handleSubmit = (e: React.SyntheticEvent ): void => {
     e.preventDefault();
 
     setBtnLoading(true);

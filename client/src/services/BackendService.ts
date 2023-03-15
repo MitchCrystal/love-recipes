@@ -69,7 +69,7 @@ const fetchRecipe = async (url:string) => {
 };
 
 const deleteRecipe = async (id: string) => {
-  console.log("before fetching in deleteRecipe: " + id);
+ 
   try {
     const response = await fetch(`${domain}/recipes/${id}`, {
       method: 'DELETE',

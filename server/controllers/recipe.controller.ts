@@ -89,6 +89,7 @@ const saveRecipe = async (req: Request, res: Response) => {
         // else create new recipe
         newRecipe.url =
           '/recipes/' + slugify(newRecipe.title) + '-' + randomUuid();
+        newRecipe.image = 'http://127.0.0.1:4500/default_recipe.jpg'
         response = await prisma.recipe.create({
           data: newRecipe,
         });
@@ -144,7 +145,7 @@ const oneRecipe = async (req: Request, res: Response) => {
 };
 
 const deleteRecipe =  async (req: Request, res: Response) => {
-  try { 
+  try {
     const id = req.params["id"].toString();
     let response = await deleteOneRecipe( id );
     if (!response) {
