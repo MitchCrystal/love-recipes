@@ -20,6 +20,11 @@ export interface RecipeType extends BlankRecipeType {
   extUrl?: string;
 }
 
+export interface ScrapedRecipeData {
+  data: RecipeType
+  error?: string
+}
+
 export interface SavedRecipeType extends RecipeType {
   id: string;
   url: string;

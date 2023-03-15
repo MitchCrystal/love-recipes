@@ -46,6 +46,11 @@ const scrapeUrl = async (req: Request, res: Response) => {
   }
 };
 
+const editRecipe = async (req: Request, res: Response) => {
+  console.log('editing recipe')
+  res.send('I am editing')
+  res.status(201)
+}
 /*
 --- Todo ---
 Recipe isn't fetched if already exists in the DB, even if it has been altered
@@ -161,4 +166,4 @@ const deleteRecipe =  async (req: Request, res: Response) => {
   }
 };
 
-export {scrapeUrl,saveRecipe,allRecipes,oneRecipe,deleteRecipe}
+export {scrapeUrl,saveRecipe,editRecipe,allRecipes,oneRecipe,deleteRecipe}

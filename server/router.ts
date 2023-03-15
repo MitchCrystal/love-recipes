@@ -1,7 +1,7 @@
 'use strict';
 //import {scrapeUrl,saveRecipe, allRecipes, oneRecipe,deleteRecipe} from "./controllers/recipe.controller";
 //const recipeController = require('./controllers/recipe.controller');
-const  {scrapeUrl,saveRecipe, allRecipes, oneRecipe,deleteRecipe}  = require('./controllers/recipe.controller');
+const  {scrapeUrl,saveRecipe, editRecipe, allRecipes, oneRecipe,deleteRecipe}  = require('./controllers/recipe.controller');
 
 const router = require('express').Router();
 
@@ -10,6 +10,9 @@ router.post('/scrape', scrapeUrl);
 
 // Add recipe
 router.post('/recipe/add', saveRecipe);
+
+//edit recipe
+router.put('/recipe/edit', editRecipe)
 
 // Get all recipes
 router.get('/recipes', allRecipes);

@@ -1,4 +1,5 @@
-import {prisma} from './db-connect';
+import { prisma } from './db-connect';
+import {SavedRecipeType} from '../../client/types'
 
 const findRecipe = async (url:string) => {
   const response = await prisma.recipe.findFirst({
@@ -8,7 +9,7 @@ const findRecipe = async (url:string) => {
   return response;
 };
 
-const updateRecipe = async (newRecipe:any) => {
+const updateRecipe = async (newRecipe:SavedRecipeType) => {
   const response = await prisma.recipe.update({
     where: {
       id: newRecipe.id,

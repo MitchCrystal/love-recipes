@@ -1,7 +1,7 @@
 import React from 'react';
 import { PropsWithChildren } from 'react'
 
-function Carousel ({ children }:PropsWithChildren) {
+function Carousel({ children }: PropsWithChildren) {
   return (
     <div className="Carousel">
       <div className="carousel carousel-center p-4 space-x-4">
