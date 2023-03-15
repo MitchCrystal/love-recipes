@@ -81,7 +81,7 @@ function InstructionsFormList ({ formField, list, setInputs }:IngredientInstruct
         >
           <div className="form-control">
             <label className="label">
-              <span className="label-text">Title</span>
+              <span className="label-text dark:text-white">Title</span>
             </label>
             <input
               className="input input-bordered w-full"
@@ -95,7 +95,7 @@ function InstructionsFormList ({ formField, list, setInputs }:IngredientInstruct
 
           <div className="form-control">
             <label className="label">
-              <span className="label-text">Text</span>
+              <span className="label-text dark:text-white">Text</span>
             </label>
             <textarea
               className="textarea textarea-bordered h-24"
@@ -119,7 +119,7 @@ function InstructionsFormList ({ formField, list, setInputs }:IngredientInstruct
         title="Steps"
         content={
           <>
-            <ol className="_list _list--numbers _list--bg-alt _list--inputs _list--inputs--close-top-right">
+            <ol className="_list _list--numbers _list--bg-alt _list--inputs _list--inputs--close-top-right dark:text-gray-800">
               {list.length
                 ? list.map((val, i) => {
                   return renderInstruction(val, i);

@@ -57,7 +57,7 @@ function IngredientsFormList ({ formField, list, setInputs }:IngredientInstructi
         <input
           type="text"
           placeholder={formField.placeholder}
-          className="input input-bordered w-full"
+          className="input input-bordered w-full dark:text-slate-900"
           name={`${formField.id}-${count}`}
           value={value}
           onChange={(e) => handleChange(e, count)}
@@ -89,7 +89,7 @@ function IngredientsFormList ({ formField, list, setInputs }:IngredientInstructi
               {showAdd ? (
                 <div className="flex justify-center mt-6">
                   <button
-                    className="btn btn-circle"
+                    className="btn btn-circle dark:text-white"
                     type="button"
                     onClick={addIngredient}
                   >

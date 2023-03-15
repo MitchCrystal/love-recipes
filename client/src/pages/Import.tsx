@@ -28,8 +28,8 @@ function Import () {
           <div className="container mx-auto">
             <div className="flex flex-col flex-wrap content-center text-center">
               <div className="prose lg:prose-xl w-full">
-                <h1>Import a recipe</h1>
-                <p>Import a recipe from your favourite recipe website</p>
+                <h1 className=' dark:text-white'>Import a recipe</h1>
+                <p className=' dark:text-white'>Import a recipe from your favourite recipe website</p>
               </div>
             </div>
           </div>

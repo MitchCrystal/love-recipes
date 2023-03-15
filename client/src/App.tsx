@@ -12,7 +12,7 @@ function App() {
   textContent: 'Fill in the form to create your own recipe.',
 }
   return (
-    <div className="App">
+    <div className="App dark:text-white dark:bg-slate-700">
       <Navbar />
       <Routes>
         <Route

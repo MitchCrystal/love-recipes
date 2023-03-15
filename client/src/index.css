@@ -9,7 +9,7 @@
   --a: 99deg 24% 86%;
   --dark: #69974f;
   --rounded-box: 0.5rem;
-  --base-200: #fff4d6;
+  --base-100: #adada8;
 }
 
 [data-theme='light'] .btn {

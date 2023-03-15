@@ -51,7 +51,7 @@ function DownloadRecipeForm ({ setRecipe }:DownloadRecipeFormProps) {
             <input
               type="text"
               placeholder="e.g. cheeseburger-casserole-recipe-6835713"
-              className="input input-bordered flex-1"
+              className="input input-bordered flex-1 dark:text-black"
               name="url"
               value={inputs.url}
               onChange={(e) => setInputs({ ...inputs, url: e.target.value })}
