@@ -3,7 +3,12 @@ import { Link } from 'react-router-dom';
 
 import Rating from './Rating';
 import { svgClock, svgEdit, svgClose } from '../assets/svg';
-import { CardPropsType } from '../../types';
+import { SavedRecipeType } from '../../types';
+
+interface CardPropsType {
+  data: SavedRecipeType;
+  onDelete: (id: string) => void
+}
 
 function Card ({ data , onDelete}:CardPropsType) {
   return (

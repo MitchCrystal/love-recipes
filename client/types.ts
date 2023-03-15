@@ -1,10 +1,7 @@
-export type CollapseProps = {
-  title: string;
-  content: JSX.Element;
-}
+
 
 export interface FieldOrderDataType {
- title: string;
+  title: string;
   description: string;
   prepTime: string;
   cookTime: string;
@@ -15,9 +12,11 @@ export interface FieldOrderDataType {
 
 
 export interface BlankRecipeType extends FieldOrderDataType {
-  ingredients: any[]; //must correct this
-  instructions: any[];  //must correct this
-
+  ingredients: string[];
+  instructions: {
+    title: string;
+    instructions: string[];
+  }[]
 }
 
 export interface RecipeType extends BlankRecipeType {
@@ -29,9 +28,8 @@ export interface SavedRecipeType extends RecipeType {
   id: string;
   url: string;
   original: boolean;
-  owner: any;  //NEED TO UPDATE THIS
-  createdAt: any; //NEED TO UPDATE THIS
-  updatedAt: any;  //NEED TO UPDATE THIS
+  createdAt: string;
+  updatedAt: string;
   authorId: string;
 }
 
@@ -47,9 +45,7 @@ export interface SuccessProps {
   text: string;
 }
 
-export interface ErrorProps extends SuccessProps {
-  className: any; //NEED TO UPDATE THIS
-}
+
 
 export type RecipeDataLabel = {
   id: string;
@@ -109,26 +105,7 @@ export type recipeDefaultDataType = {
   },
 };
 
-export interface CreateRecipeProps {
-  createRecipeState: {
-    recipe: BlankRecipeType | null;
-    title: string;
-    textContent?: string;
-  }
-}
-
-export interface CreateRecipeDestructuredProps {
-    recipe: BlankRecipeType | null;
-    title: string;
-    textContent?: string;
-
-}
-
-export interface DownloadRecipeFormProps {
-  setRecipe: React.Dispatch<React.SetStateAction<null>>
-}
-
-export interface GenreralFormInputProps {
+export interface GeneralFormInputProps {
   formField: {
     id: string;
     label: string;
@@ -147,17 +124,15 @@ export interface GenreralFormInputProps {
 }>>
 }
 
-export interface MainFormInputProps extends GenreralFormInputProps {
+export interface MainFormInputProps extends GeneralFormInputProps {
   value: string;
 }
 
-export interface IngredientInstructionProps extends GenreralFormInputProps {
+export interface IngredientInstructionProps extends GeneralFormInputProps {
   list: any[];
 }
 
-export interface RatingProp {
-  rating: number
-}
+
 
 export interface DefaultDataObject {
   id: string;
@@ -171,7 +146,3 @@ export interface NewInstructionType {
   instructions: any[]
 }
 
-export interface CardPropsType {
-  data: SavedRecipeType;
-  onDelete: (id: string) => void
-}

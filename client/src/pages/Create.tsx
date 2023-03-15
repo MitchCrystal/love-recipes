@@ -1,6 +1,6 @@
 import React, { useState, useEffect } from 'react';
 import { useLocation } from 'react-router-dom';
-import { CreateRecipeProps } from '../../types';
+import { BlankRecipeType } from '../../types';
 
 import Dashboard from '../components/Dashboard';
 import CreateRecipe from '../features/recipe/CreateRecipe';
@@ -10,6 +10,14 @@ import CreateRecipe from '../features/recipe/CreateRecipe';
 //   title: 'Create Recipe',
 //   textContent: 'Fill in the form to create your own recipe.',
 // };
+
+interface CreateRecipeProps {
+  createRecipeState: {
+    recipe: BlankRecipeType | null;
+    title: string;
+    textContent?: string;
+  }
+}
 
 function Create ({ createRecipeState }:CreateRecipeProps) {
   const [thisState, setThisState] = useState(createRecipeState);

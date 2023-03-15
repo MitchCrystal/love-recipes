@@ -1,5 +1,9 @@
 import React from 'react';
-import { RatingProp } from '../../types';
+
+
+interface RatingProp {
+  rating: number
+}
 
 function Rating ({ rating }:RatingProp) {
   return (

@@ -11,7 +11,14 @@ import Success from '../../utils/Success';
 import Error from '../../utils/Error';
 
 import { recipeDefaultData } from './config';
-import { CreateRecipeDestructuredProps, FieldOrderDataType, recipeDefaultDataType } from '../../../types';
+import { BlankRecipeType, FieldOrderDataType, recipeDefaultDataType } from '../../../types';
+
+interface CreateRecipeDestructuredProps {
+    recipe: BlankRecipeType | null;
+    title: string;
+    textContent?: string;
+}
+
 
 const inputControl = {
   title: '',

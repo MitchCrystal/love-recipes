@@ -1,5 +1,9 @@
 import React from 'react';
-import { ErrorProps } from '../../types';
+import { SuccessProps } from '../../types';
+
+interface ErrorProps extends SuccessProps {
+  className: string;
+}
 
 function Error ({ className, text }:ErrorProps) {
   return (
