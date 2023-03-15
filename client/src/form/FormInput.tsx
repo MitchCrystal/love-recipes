@@ -10,12 +10,12 @@ function FormInput ({ formField, value, setInputs }:MainFormInputProps) {
       }`}
     >
       <label className="label">
-        <span className="label-text">{getRecipeDataLabel(formField)}</span>
+        <span className="label-text dark:text-white">{getRecipeDataLabel(formField)}</span>
       </label>
       <input
         type="text"
         placeholder={formField.placeholder}
-        className="input input-bordered w-full"
+        className="input input-bordered w-full dark:text-slate-900"
         name={formField.id}
         value={value}
         onChange={(e) =>

@@ -72,15 +72,15 @@ function Recipe () {
                   <div className="w-[55%] pr-[3rem]">
                     <section className="section">
                       <div className="prose lg:prose-xl w-full">
-                        <h1>{recipe.title}</h1>
-                        <p>{recipe.description}</p>
+                        <h1 className='dark:text-white'>{recipe.title}</h1>
+                        <p className='dark:text-white'>{recipe.description}</p>
                       </div>
                     </section>
 
                     <section className="section">
                       <div className="prose lg:prose-xl w-full">
                         <div className="instructions">
-                          <ul className="_list _list--numbers _list--dark pl-0">
+                          <ul className="_list _list--numbers _list--dark pl-0 dark:text-white">
                             {recipe.instructions.map((instruction, i) => {
                               const { title, instructions } = instruction;
                               return (

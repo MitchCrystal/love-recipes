@@ -45,7 +45,7 @@ function Create ({createRecipeState}:CreateRecipeProps) {
   return (
     <div className="page-create">
       <Dashboard>
-        <CreateRecipe
+        <CreateRecipe 
           recipe={thisState.recipe}
           title={thisState.title}
           textContent={thisState.textContent}

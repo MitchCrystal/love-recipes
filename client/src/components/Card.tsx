@@ -38,7 +38,7 @@ function Card ({ data , onDelete}:CardPropsType) {
             alt={data.title}
           />
         </figure>
-        <div className="card-body">
+        <div className="card-body dark:text-gray-800">
           <h2 className="card-title">{data.title}</h2>
           <p>{data.description}</p>
           <div className="card-actions">

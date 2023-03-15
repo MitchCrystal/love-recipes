@@ -83,8 +83,8 @@ function CreateRecipe ({ recipe, title, textContent }:CreateRecipeDestructuredPr
               </section>
             )}
 
-            <div className="prose lg:prose-xl w-full">
-              <h1>{title}</h1>
+            <div className="prose lg:prose-xl w-full dark:text-white">
+              <h1 className='dark:text-white'>{title}</h1>
               {textContent && <p>{textContent}</p>}
             </div>
           </div>
