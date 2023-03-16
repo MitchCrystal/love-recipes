@@ -10,9 +10,11 @@ interface CardPropsType {
   onDelete: (id: string) => void
 }
 
-function Card ({ data , onDelete}:CardPropsType) {
+function Card({ data, onDelete }: CardPropsType) {
+  const microUrl = data.url.substring(data.url.length - 6)
+
   return (
-    <div className="card card-normal card--hover w-96 bg-base-100 shadow-md">
+    <div id={microUrl}  className="card card-normal card--hover w-96 bg-base-100 shadow-md">
       <div className="card__hovers">
         <Link
           to={`${data.url}?edit`}

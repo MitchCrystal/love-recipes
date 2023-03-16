@@ -7,7 +7,8 @@
     "dev": "vite",
     "watch-css": "npx tailwindcss -i ./src/index.css -o public/style.css --watch",
     "build": "tsc && vite build",
-    "preview": "vite preview"
+    "preview": "vite preview",
+    "cypress:open": "cypress open"
   },
   "dependencies": {
     "prop-types": "^15.8.1",
@@ -21,6 +22,7 @@
     "@types/react-dom": "^18.0.11",
     "@vitejs/plugin-react": "^3.1.0",
     "autoprefixer": "^10.4.13",
+    "cypress": "^12.8.1",
     "daisyui": "^2.51.3",
     "dotenv": "^16.0.3",
     "eslint": "^8.35.0",
