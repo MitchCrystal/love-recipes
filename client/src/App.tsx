@@ -8,7 +8,7 @@ import { useState } from 'react';
 function App() {
 
   return (
-    <div className="App dark:text-white dark:bg-slate-700">
+    <div style={{height: "100%", minHeight: "100vh" }} className="App dark:text-white dark:bg-slate-700">
       <Navbar />
       <Routes>
         <Route

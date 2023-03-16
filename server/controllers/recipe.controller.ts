@@ -133,7 +133,6 @@ const allRecipes = async (req: Request, res: Response) => {
 const oneRecipe = async (req: Request, res: Response) => {
   try {
     const url  = "/recipes/" + req.params["url"].toString();
-    console.log("url: " + url);
     let response = await findRecipe(url);
 
     if (!response) {
