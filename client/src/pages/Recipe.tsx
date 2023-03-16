@@ -65,7 +65,7 @@ function Recipe () {
         )}
         {recipe &&
           <>
-          <section className="section">
+          <section style={{marginBottom: "0px"}} className="section">
             <div className="container mx-auto max-w-screen-xl">
               <div className="flex flex-col flex-wrap">
                 <div className="flex">
